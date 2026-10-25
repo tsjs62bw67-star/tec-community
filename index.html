@@ -417,6 +417,21 @@
             object-fit: cover;
         }
 
+        /* تخصيص بطاقات النقابات لتكون قابلة للنقر بشكل كامل */
+        .guild-card {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .guild-card::after {
+            content: "انقر لعرض الروابط والتفاصيل ⬅";
+            display: block;
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
         .card h3 {
             color: var(--gold);
             font-size: 20px;
@@ -526,6 +541,60 @@
         .maintenance-box p {
             font-size: 18px;
             color: var(--silver);
+        }
+
+        /* --- قسم تفاصيل النقابة المنفرد --- */
+        .guild-details-banner {
+            background: linear-gradient(135deg, rgba(223, 177, 91, 0.15), var(--card-bg));
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .guild-banner-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 3px solid var(--gold);
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            color: var(--gold);
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(223, 177, 91, 0.3);
+        }
+
+        .guild-banner-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--silver-dark);
+            color: var(--silver);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
         /* --- نافذة تكبير الصورة (Image Lightbox Modal) --- */
@@ -690,6 +759,7 @@
         <ul class="sidebar-menu">
             <li><a href="#home" class="nav-link active" onclick="switchSection('home', this)"><i class="fa-solid fa-house"></i> الشاشة الرئيسية</a></li>
             <li><a href="#contracts" class="nav-link" onclick="switchSection('contracts', this)"><i class="fa-solid fa-handshake"></i> التعاقدات</a></li>
+            <li id="guildDetailsNavLi" style="display: none;"><a href="#guild-details" class="nav-link" onclick="switchSection('guild-details', this)"><i class="fa-solid fa-link"></i> روابط النقابة</a></li>
             <li><a href="#elite" class="nav-link" onclick="switchSection('elite', this)"><i class="fa-solid fa-crown"></i> عليا التيك</a></li>
             <li><a href="#newspaper" class="nav-link" onclick="switchSection('newspaper', this)"><i class="fa-solid fa-newspaper"></i> صحيفة التيك (تيك دومين)</a></li>
             <li><a href="#interviews" class="nav-link" onclick="switchSection('interviews', this)"><i class="fa-solid fa-microphone-lines"></i> مقابلات التيك</a></li>
@@ -767,35 +837,90 @@
             </div>
         </section>
 
-        <!-- 2. قسم التعاقدات (القسم الثاني الجديد) -->
+        <!-- 2. قسم التعاقدات -->
         <section id="contracts">
             <h2 class="section-title">قسم التعاقدات</h2>
-            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community.</p>
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community. (اضغط على البطاقة للانتقال إلى روابطها)</p>
             
             <div class="cards-grid">
                 <!-- بطاقة النقابة الأولى -->
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)">
+                <div class="card guild-card" onclick="openGuildDetails('[ اسم النقابة الأولى ]', '[ لقب قائد النقابة الأولى ]', '')">
+                    <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
                     </div>
                     <h3>[ اسم النقابة الأولى ]</h3>
-                    <p>لقب القائد: [ لقب قائد النقابة ]</p>
+                    <p>لقب القائد: [ لقب قائد النقابة الأولى ]</p>
                 </div>
+
                 <!-- بطاقة النقابة الثانية -->
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)">
+                <div class="card guild-card" onclick="openGuildDetails('[ اسم النقابة الثانية ]', '[ لقب قائد النقابة الثانية ]', '')">
+                    <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
                     </div>
                     <h3>[ اسم النقابة الثانية ]</h3>
-                    <p>لقب القائد: [ لقب قائد النقابة ]</p>
+                    <p>لقب القائد: [ لقب قائد النقابة الثانية ]</p>
                 </div>
+
                 <!-- بطاقة النقابة الثالثة -->
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)">
+                <div class="card guild-card" onclick="openGuildDetails('[ اسم النقابة الثالثة ]', '[ لقب قائد النقابة الثالثة ]', '')">
+                    <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
                     </div>
                     <h3>[ اسم النقابة الثالثة ]</h3>
-                    <p>لقب القائد: [ لقب قائد النقابة ]</p>
+                    <p>لقب القائد: [ لقب قائد النقابة الثالثة ]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الجديد: روابط وتفاصيل النقابة المختارة -->
+        <section id="guild-details">
+            <button class="back-btn" onclick="switchSection('contracts', document.querySelector('[href=\'#contracts\']'))">
+                <i class="fa-solid fa-arrow-right"></i> العودة لقسم التعاقدات
+            </button>
+            
+            <div class="guild-details-banner">
+                <div class="guild-banner-logo" id="guildBannerLogo" onclick="openImageModal(this)">
+                    <i class="fa-solid fa-building-shield"></i>
+                </div>
+                <h2 id="guildBannerTitle" style="color: var(--gold); font-size: 32px; margin-bottom: 10px;">اسم النقابة</h2>
+                <p id="guildBannerLeader" style="color: var(--silver); font-size: 20px;">لقب القائد: </p>
+            </div>
+
+            <h3 style="color: var(--gold); margin-bottom: 20px; font-size: 24px;">الروابط والمجموعات الخاصة بالنقابة</h3>
+
+            <!-- شبكة البطاقات لعرض روابط النقابة -->
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-img-container" style="color: #25d366; border-color: #25d366;">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <h3>المجموعة الرسمية</h3>
+                    <p style="margin-bottom: 15px;">الانضمام إلى المجموعة الرئيسية للنقابة المتعاقدة.</p>
+                    <a href="https://chat.whatsapp.com/" target="_blank" class="action-btn whatsapp-btn" style="min-width: auto; padding: 10px;">
+                        <i class="fa-brands fa-whatsapp"></i> دخول المجموعة
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container" style="color: var(--gold); border-color: var(--gold);">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3>التواصل مع قائد النقابة</h3>
+                    <p style="margin-bottom: 15px;">مراسلة قائد النقابة بشكل مباشر على الواتساب.</p>
+                    <a href="https://wa.me/" target="_blank" class="action-btn leader-btn" style="min-width: auto; padding: 10px;">
+                        <i class="fa-solid fa-message"></i> مراسلة القائد
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container" style="color: var(--silver); border-color: var(--silver);">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h3>قناة الإعلانات والفعاليات</h3>
+                    <p style="margin-bottom: 15px;">متابعة آخر المستجدات والفعاليات المشتركة للنقابة.</p>
+                    <a href="https://chat.whatsapp.com/" target="_blank" class="action-btn whatsapp-btn" style="min-width: auto; padding: 10px; background: #128c7e; border-color: #128c7e; color: #fff;">
+                        <i class="fa-solid fa-newspaper"></i> دخول القناة
+                    </a>
                 </div>
             </div>
         </section>
@@ -988,7 +1113,7 @@
         </div>
     </div>
 
-    <!-- JavaScript للتنقل والتفاعل وتكبير الصور -->
+    <!-- JavaScript للتنقل والتفاعل وتكبير الصور وتمرير بيانات النقابة -->
     <script>
         function switchSection(sectionId, element) {
             document.querySelectorAll('main section').forEach(sec => {
@@ -1027,6 +1152,26 @@
             closeBotModal();
             const targetLink = document.querySelector(`[href='#${sectionId}']`);
             switchSection(sectionId, targetLink);
+        }
+
+        // --- الانتقال لقسم روابط تفاصيل النقابة المنفرد عند النقر على البطاقة ---
+        function openGuildDetails(name, leaderTitle, logoUrl) {
+            document.getElementById('guildBannerTitle').innerText = name;
+            document.getElementById('guildBannerLeader').innerText = "لقب القائد: " + leaderTitle;
+            
+            const logoContainer = document.getElementById('guildBannerLogo');
+            if (logoUrl && logoUrl.trim() !== "") {
+                logoContainer.innerHTML = `<img src="${logoUrl}" alt="${name}">`;
+            } else {
+                logoContainer.innerHTML = `<i class="fa-solid fa-building-shield"></i>`;
+            }
+
+            // إظهار عنصر القائمة الجانبية المخصص وتحديده
+            const detailsLi = document.getElementById('guildDetailsNavLi');
+            detailsLi.style.display = 'block';
+            const detailsLink = detailsLi.querySelector('a');
+
+            switchSection('guild-details', detailsLink);
         }
 
         // --- وظائف تكبير الصور (Lightbox) ---
