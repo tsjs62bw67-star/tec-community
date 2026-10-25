@@ -689,6 +689,7 @@
         </div>
         <ul class="sidebar-menu">
             <li><a href="#home" class="nav-link active" onclick="switchSection('home', this)"><i class="fa-solid fa-house"></i> الشاشة الرئيسية</a></li>
+            <li><a href="#contracts" class="nav-link" onclick="switchSection('contracts', this)"><i class="fa-solid fa-handshake"></i> التعاقدات</a></li>
             <li><a href="#elite" class="nav-link" onclick="switchSection('elite', this)"><i class="fa-solid fa-crown"></i> عليا التيك</a></li>
             <li><a href="#newspaper" class="nav-link" onclick="switchSection('newspaper', this)"><i class="fa-solid fa-newspaper"></i> صحيفة التيك (تيك دومين)</a></li>
             <li><a href="#interviews" class="nav-link" onclick="switchSection('interviews', this)"><i class="fa-solid fa-microphone-lines"></i> مقابلات التيك</a></li>
@@ -737,7 +738,6 @@
             <!-- بطاقة تعريف المؤسس -->
             <div class="founder-card">
                 <div class="founder-avatar" onclick="openImageModal(this)">
-                    <!-- ضع رابط صورة المؤسس داخل الوسم <img> أو اتركه فارغاً مع الأيقونة -->
                     <i class="fa-solid fa-user-tie"></i>
                 </div>
                 <div class="founder-info">
@@ -767,7 +767,40 @@
             </div>
         </section>
 
-        <!-- 2. قسم عليا التيك -->
+        <!-- 2. قسم التعاقدات (القسم الثاني الجديد) -->
+        <section id="contracts">
+            <h2 class="section-title">قسم التعاقدات</h2>
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community.</p>
+            
+            <div class="cards-grid">
+                <!-- بطاقة النقابة الأولى -->
+                <div class="card">
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <i class="fa-solid fa-building-shield"></i>
+                    </div>
+                    <h3>[ اسم النقابة الأولى ]</h3>
+                    <p>لقب القائد: [ لقب قائد النقابة ]</p>
+                </div>
+                <!-- بطاقة النقابة الثانية -->
+                <div class="card">
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <i class="fa-solid fa-building-shield"></i>
+                    </div>
+                    <h3>[ اسم النقابة الثانية ]</h3>
+                    <p>لقب القائد: [ لقب قائد النقابة ]</p>
+                </div>
+                <!-- بطاقة النقابة الثالثة -->
+                <div class="card">
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <i class="fa-solid fa-building-shield"></i>
+                    </div>
+                    <h3>[ اسم النقابة الثالثة ]</h3>
+                    <p>لقب القائد: [ لقب قائد النقابة ]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. قسم عليا التيك -->
         <section id="elite">
             <h2 class="section-title">عليا التيك</h2>
             <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">نخبة المجتمع وأصحاب الأثر والقيادة العليا في TEC Community.</p>
@@ -806,7 +839,7 @@
             </div>
         </section>
 
-        <!-- 3. صحيفة التيك (تيك دومين) -->
+        <!-- 4. صحيفة التيك (تيك دومين) -->
         <section id="newspaper">
             <h2 class="section-title">صحيفة التيك (تيك دومين)</h2>
             <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النافذة الإخبارية والمقالات الرسمية للمجتمع، تغطي أحدث الأخبار والتقارير التقنية.</p>
@@ -854,7 +887,7 @@
             </div>
         </section>
 
-        <!-- 4. مقابلات التيك -->
+        <!-- 5. مقابلات التيك -->
         <section id="interviews">
             <h2 class="section-title">مقابلات التيك</h2>
             <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">لقاءات حصرية مع أبرز الشخصيات والمبدعين داخل وخارج المجتمع.</p>
@@ -902,7 +935,7 @@
             </div>
         </section>
 
-        <!-- 5. سيرفرات تيك -->
+        <!-- 6. سيرفرات تيك -->
         <section id="servers">
             <h2 class="section-title">سيرفرات تيك</h2>
             <div class="maintenance-box">
@@ -912,7 +945,7 @@
             </div>
         </section>
 
-        <!-- 6. مجهول -->
+        <!-- 7. مجهول -->
         <section id="unknown">
             <h2 class="section-title">مجهول</h2>
             <div class="maintenance-box">
@@ -945,11 +978,12 @@
             </div>
             <div class="bot-links">
                 <a href="#home" class="bot-link-item" onclick="botNavigate('home')"><span>الشاشة الرئيسية</span><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="#contracts" class="bot-link-item" onclick="botNavigate('contracts')"><span>قسم التعاقدات</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#elite" class="bot-link-item" onclick="botNavigate('elite')"><span>عليا التيك</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#newspaper" class="bot-link-item" onclick="botNavigate('newspaper')"><span>صحيفة التيك (تيك دومين)</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#interviews" class="bot-link-item" onclick="botNavigate('interviews')"><span>مقابلات التيك</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#servers" class="bot-link-item" onclick="botNavigate('servers')"><span>سيرفرات تيك (صيانة)</span><i class="fa-solid fa-arrow-left"></i></a>
-                <a href="#unknown" class="bot-link-item" onclick="botNavigate('unknown')"><span>مجهول (صيانة)</span><br><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="#unknown" class="bot-link-item" onclick="botNavigate('unknown')"><span>مجهول (صيانة)</span><i class="fa-solid fa-arrow-left"></i></a>
             </div>
         </div>
     </div>
@@ -1002,12 +1036,8 @@
             const modalImg = document.getElementById('modalImageSrc');
 
             if (imgElement) {
-                // إذا كانت البطاقة تحتوي على صورة فعلية، اعرضها بالحجم الكبير
                 modalImg.src = imgElement.src;
                 modal.style.display = 'flex';
-            } else {
-                // إذا كانت البطاقة فارغة وبها أيقونة افتراضية فقط، يمكنك تنبيه المستخدم أو إظهار الأيقونة
-                // (اختياري: تم إعدادها بحيث تعمل فور إضافة صور حقيقية لاحقاً عبر <img src="...">)
             }
         }
 
@@ -1019,7 +1049,9 @@
             let input = document.getElementById('siteSearch').value.toLowerCase();
             if(input.trim() === '') return;
 
-            if(input.includes('عليا') || input.includes('النخبة')) {
+            if(input.includes('تعاقد') || input.includes('نقابة')) {
+                switchSection('contracts', document.querySelector('[href="#contracts"]'));
+            } else if(input.includes('عليا') || input.includes('النخبة')) {
                 switchSection('elite', document.querySelector('[href="#elite"]'));
             } else if(input.includes('صحيفة') || input.includes('دومين')) {
                 switchSection('newspaper', document.querySelector('[href="#newspaper"]'));
