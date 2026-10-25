@@ -1,0 +1,877 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tqr\tx566\tqr\tx1133\tqr\tx1700\tqr\tx2267\tqr\tx2834\tqr\tx3401\tqr\tx3968\tqr\tx4535\tqr\tx5102\tqr\tx5669\tqr\tx6236\tqr\tx6803\pardirnatural\qr\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="ar" dir="rtl">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>TEC Community</title>\
+    <!-- \uc0\u1575 \u1587 \u1578 \u1610 \u1585 \u1575 \u1583  \u1582 \u1591  \u1576 \u1610 \u1585 \u1608 \u1578 \u1610  \u1605 \u1606  Google Fonts -->\
+    <link href="https://fonts.googleapis.com/css2?family=Beiruti:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">\
+    <!-- \uc0\u1605 \u1603 \u1578 \u1576 \u1577  \u1571 \u1610 \u1602 \u1608 \u1606 \u1575 \u1578  FontAwesome -->\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\
+    <!-- \uc0\u1605 \u1603 \u1578 \u1576 \u1577  Model Viewer \u1604 \u1593 \u1585 \u1590  \u1605 \u1580 \u1587 \u1605 \u1575 \u1578  3D -->\
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>\
+\
+    <style>\
+        :root \{\
+            --bg-main: #07090e;\
+            --bg-sidebar: #0d121d;\
+            --card-bg: #131a2b;\
+            --gold: #dfb15b;\
+            --gold-light: #f3e5ab;\
+            --gold-dark: #b8860b;\
+            --silver: #d1d5db;\
+            --silver-dark: #9ca3af;\
+            --white: #ffffff;\
+            --border-glow: rgba(223, 177, 91, 0.3);\
+            --transition: all 0.3s ease;\
+        \}\
+\
+        * \{\
+            margin: 0;\
+            padding: 0;\
+            box-sizing: border-box;\
+            font-family: 'Beiruti', sans-serif;\
+            scroll-behavior: smooth;\
+        \}\
+\
+        body \{\
+            background-color: var(--bg-main);\
+            color: var(--white);\
+            display: flex;\
+            min-height: 100vh;\
+            overflow-x: hidden;\
+        \}\
+\
+        /* --- \uc0\u1575 \u1604 \u1588 \u1585 \u1610 \u1591  \u1575 \u1604 \u1580 \u1575 \u1606 \u1576 \u1610  (Sidebar) --- */\
+        aside \{\
+            width: 280px;\
+            background-color: var(--bg-sidebar);\
+            border-left: 1px solid rgba(223, 177, 91, 0.2);\
+            position: fixed;\
+            height: 100vh;\
+            right: 0;\
+            top: 0;\
+            display: flex;\
+            flex-direction: column;\
+            justify-content: space-between;\
+            z-index: 1000;\
+            transition: var(--transition);\
+        \}\
+\
+        .sidebar-header \{\
+            padding: 30px 20px;\
+            text-align: center;\
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);\
+        \}\
+\
+        .sidebar-header h1 \{\
+            font-size: 26px;\
+            font-weight: 800;\
+            background: linear-gradient(135deg, var(--white), var(--gold), var(--silver));\
+            -webkit-background-clip: text;\
+            -webkit-text-fill-color: transparent;\
+            letter-spacing: 1px;\
+        \}\
+\
+        .sidebar-menu \{\
+            list-style: none;\
+            padding: 20px 10px;\
+            flex-grow: 1;\
+            overflow-y: auto;\
+        \}\
+\
+        .sidebar-menu li \{\
+            margin-bottom: 10px;\
+        \}\
+\
+        .sidebar-menu a \{\
+            display: flex;\
+            align-items: center;\
+            gap: 15px;\
+            padding: 12px 18px;\
+            color: var(--silver);\
+            text-decoration: none;\
+            border-radius: 10px;\
+            font-size: 18px;\
+            font-weight: 500;\
+            transition: var(--transition);\
+        \}\
+\
+        .sidebar-menu a:hover, .sidebar-menu a.active \{\
+            background: linear-gradient(90deg, rgba(223, 177, 91, 0.15), transparent);\
+            color: var(--gold);\
+            border-right: 4px solid var(--gold);\
+        \}\
+\
+        .sidebar-menu a i \{\
+            font-size: 20px;\
+            color: var(--gold);\
+        \}\
+\
+        .sidebar-footer \{\
+            padding: 20px;\
+            text-align: center;\
+            font-size: 14px;\
+            color: var(--silver-dark);\
+            border-top: 1px solid rgba(255, 255, 255, 0.05);\
+        \}\
+\
+        /* \uc0\u1586 \u1585  \u1575 \u1604 \u1602 \u1575 \u1574 \u1605 \u1577  \u1604 \u1604 \u1580 \u1608 \u1575 \u1604  */\
+        .mobile-toggle \{\
+            display: none;\
+            position: fixed;\
+            top: 20px;\
+            left: 20px;\
+            background: var(--card-bg);\
+            border: 1px solid var(--gold);\
+            color: var(--gold);\
+            padding: 10px 15px;\
+            border-radius: 8px;\
+            font-size: 20px;\
+            z-index: 1001;\
+            cursor: pointer;\
+        \}\
+\
+        /* --- \uc0\u1575 \u1604 \u1605 \u1581 \u1578 \u1608 \u1609  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610  (Main Content) --- */\
+        main \{\
+            margin-right: 280px;\
+            flex-grow: 1;\
+            padding: 40px;\
+            transition: var(--transition);\
+        \}\
+\
+        section \{\
+            display: none;\
+            animation: fadeIn 0.5s ease-in-out;\
+        \}\
+\
+        section.active-section \{\
+            display: block;\
+        \}\
+\
+        @keyframes fadeIn \{\
+            from \{ opacity: 0; transform: translateY(10px); \}\
+            to \{ opacity: 1; transform: translateY(0); \}\
+        \}\
+\
+        .section-title \{\
+            font-size: 32px;\
+            font-weight: 700;\
+            margin-bottom: 25px;\
+            color: var(--white);\
+            border-bottom: 2px solid var(--gold);\
+            padding-bottom: 10px;\
+            display: inline-block;\
+        \}\
+\
+        /* --- \uc0\u1575 \u1604 \u1588 \u1575 \u1588 \u1577  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610 \u1577  --- */\
+        .hero-top \{\
+            display: grid;\
+            grid-template-columns: 1fr 350px;\
+            gap: 30px;\
+            align-items: center;\
+            margin-bottom: 40px;\
+        \}\
+\
+        .hero-info h2 \{\
+            font-size: 38px;\
+            color: var(--gold);\
+            margin-bottom: 15px;\
+        \}\
+\
+        .hero-info p \{\
+            font-size: 18px;\
+            color: var(--silver);\
+            line-height: 1.8;\
+            margin-bottom: 25px;\
+        \}\
+\
+        /* \uc0\u1588 \u1585 \u1610 \u1591  \u1575 \u1604 \u1576 \u1581 \u1579  \u1608 \u1575 \u1604 \u1586 \u1585  */\
+        .search-bot-bar \{\
+            display: flex;\
+            gap: 15px;\
+            margin-bottom: 30px;\
+        \}\
+\
+        .search-box \{\
+            flex-grow: 1;\
+            position: relative;\
+        \}\
+\
+        .search-box input \{\
+            width: 100%;\
+            padding: 14px 20px 14px 50px;\
+            background: var(--card-bg);\
+            border: 1px solid rgba(223, 177, 91, 0.3);\
+            border-radius: 12px;\
+            color: var(--white);\
+            font-size: 16px;\
+            outline: none;\
+            transition: var(--transition);\
+        \}\
+\
+        .search-box input:focus \{\
+            border-color: var(--gold);\
+            box-shadow: 0 0 15px rgba(223, 177, 91, 0.2);\
+        \}\
+\
+        .search-box i \{\
+            position: absolute;\
+            left: 20px;\
+            top: 50%;\
+            transform: translateY(-50%);\
+            color: var(--gold);\
+            font-size: 18px;\
+        \}\
+\
+        .bot-btn \{\
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));\
+            color: var(--bg-main);\
+            border: none;\
+            padding: 0 25px;\
+            border-radius: 12px;\
+            font-weight: 700;\
+            font-size: 16px;\
+            cursor: pointer;\
+            display: flex;\
+            align-items: center;\
+            gap: 10px;\
+            transition: var(--transition);\
+        \}\
+\
+        .bot-btn:hover \{\
+            transform: scale(1.05);\
+            box-shadow: 0 0 20px rgba(223, 177, 91, 0.4);\
+        \}\
+\
+        /* \uc0\u1581 \u1575 \u1608 \u1610 \u1577  \u1575 \u1604 \u1604 \u1608 \u1594 \u1608  3D */\
+        .logo-3d-container \{\
+            width: 100%;\
+            height: 300px;\
+            background: var(--card-bg);\
+            border: 2px dashed var(--gold);\
+            border-radius: 20px;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            position: relative;\
+            overflow: hidden;\
+        \}\
+\
+        model-viewer \{\
+            width: 100%;\
+            height: 100%;\
+        \}\
+\
+        .logo-placeholder-text \{\
+            text-align: center;\
+            color: var(--silver);\
+            padding: 20px;\
+        \}\
+\
+        .logo-placeholder-text i \{\
+            font-size: 40px;\
+            color: var(--gold);\
+            margin-bottom: 10px;\
+        \}\
+\
+        /* \uc0\u1576 \u1591 \u1575 \u1602 \u1577  \u1575 \u1604 \u1605 \u1572 \u1587 \u1587  */\
+        .founder-card \{\
+            background: var(--card-bg);\
+            border: 1px solid rgba(223, 177, 91, 0.2);\
+            border-radius: 16px;\
+            padding: 25px;\
+            margin-bottom: 30px;\
+            display: flex;\
+            align-items: center;\
+            gap: 20px;\
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);\
+        \}\
+\
+        .founder-avatar \{\
+            width: 80px;\
+            height: 80px;\
+            border-radius: 50%;\
+            background: linear-gradient(135deg, var(--gold), var(--silver));\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            font-size: 32px;\
+            color: var(--bg-main);\
+            font-weight: 800;\
+        \}\
+\
+        .founder-info h3 \{\
+            color: var(--gold);\
+            font-size: 22px;\
+            margin-bottom: 5px;\
+        \}\
+\
+        .founder-info p \{\
+            color: var(--silver);\
+            font-size: 16px;\
+        \}\
+\
+        /* \uc0\u1571 \u1586 \u1585 \u1575 \u1585  \u1575 \u1604 \u1585 \u1608 \u1575 \u1576 \u1591  \u1575 \u1604 \u1571 \u1585 \u1576 \u1593 \u1577  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610 \u1577  */\
+        .hero-links-grid \{\
+            display: grid;\
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\
+            gap: 20px;\
+        \}\
+\
+        .hero-link-btn \{\
+            background: var(--card-bg);\
+            border: 1px solid rgba(223, 177, 91, 0.3);\
+            border-radius: 14px;\
+            padding: 20px;\
+            text-align: center;\
+            text-decoration: none;\
+            color: var(--white);\
+            font-size: 18px;\
+            font-weight: 600;\
+            display: flex;\
+            flex-direction: column;\
+            align-items: center;\
+            gap: 12px;\
+            transition: var(--transition);\
+        \}\
+\
+        .hero-link-btn i \{\
+            font-size: 28px;\
+            color: var(--gold);\
+        \}\
+\
+        .hero-link-btn:hover \{\
+            border-color: var(--gold);\
+            background: linear-gradient(135deg, rgba(223, 177, 91, 0.1), var(--card-bg));\
+            transform: translateY(-5px);\
+            box-shadow: 0 10px 25px rgba(223, 177, 91, 0.15);\
+        \}\
+\
+        /* --- \uc0\u1575 \u1604 \u1576 \u1591 \u1575 \u1602 \u1575 \u1578  \u1575 \u1604 \u1593 \u1575 \u1605 \u1577  \u1608 \u1575 \u1604 \u1588 \u1576 \u1603 \u1575 \u1578  --- */\
+        .cards-grid \{\
+            display: grid;\
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\
+            gap: 25px;\
+            margin-top: 20px;\
+        \}\
+\
+        .card \{\
+            background: var(--card-bg);\
+            border: 1px solid rgba(255, 255, 255, 0.08);\
+            border-radius: 16px;\
+            padding: 25px;\
+            text-align: center;\
+            transition: var(--transition);\
+        \}\
+\
+        .card:hover \{\
+            border-color: var(--gold);\
+            transform: translateY(-5px);\
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);\
+        \}\
+\
+        .card-img-placeholder \{\
+            width: 100px;\
+            height: 100px;\
+            border-radius: 50%;\
+            background: rgba(255,255,255,0.05);\
+            border: 2px dashed var(--silver-dark);\
+            margin: 0 auto 20px auto;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            color: var(--silver-dark);\
+            font-size: 24px;\
+        \}\
+\
+        .card h3 \{\
+            color: var(--gold);\
+            font-size: 20px;\
+            margin-bottom: 10px;\
+        \}\
+\
+        .card p \{\
+            color: var(--silver);\
+            font-size: 15px;\
+        \}\
+\
+        /* \uc0\u1602 \u1587 \u1605  \u1575 \u1604 \u1589 \u1581 \u1601  \u1608 \u1575 \u1604 \u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  (\u1602 \u1575 \u1574 \u1583  \u1608 \u1606 \u1575 \u1574 \u1576  \u1608 \u1591 \u1575 \u1602 \u1605 ) */\
+        .leadership-grid \{\
+            display: grid;\
+            grid-template-columns: 1fr 1fr;\
+            gap: 25px;\
+            margin-bottom: 30px;\
+        \}\
+\
+        .leader-card \{\
+            background: linear-gradient(135deg, rgba(223, 177, 91, 0.1), var(--card-bg));\
+            border: 1px solid var(--gold);\
+            border-radius: 16px;\
+            padding: 30px;\
+            text-align: center;\
+        \}\
+\
+        /* \uc0\u1575 \u1604 \u1571 \u1602 \u1587 \u1575 \u1605  \u1575 \u1604 \u1605 \u1602 \u1601 \u1604 \u1577  \u1604 \u1604 \u1589 \u1610 \u1575 \u1606 \u1577  */\
+        .maintenance-box \{\
+            text-align: center;\
+            padding: 80px 20px;\
+            background: var(--card-bg);\
+            border: 1px dashed rgba(223, 177, 91, 0.3);\
+            border-radius: 20px;\
+            margin-top: 30px;\
+        \}\
+\
+        .maintenance-box i \{\
+            font-size: 60px;\
+            color: var(--gold);\
+            margin-bottom: 20px;\
+            animation: pulse 2s infinite;\
+        \}\
+\
+        @keyframes pulse \{\
+            0% \{ transform: scale(1); opacity: 1; \}\
+            50% \{ transform: scale(1.1); opacity: 0.7; \}\
+            100% \{ transform: scale(1); opacity: 1; \}\
+        \}\
+\
+        .maintenance-box h3 \{\
+            font-size: 28px;\
+            color: var(--white);\
+            margin-bottom: 10px;\
+        \}\
+\
+        .maintenance-box p \{\
+            font-size: 18px;\
+            color: var(--silver);\
+        \}\
+\
+        /* \uc0\u1605 \u1608 \u1583 \u1575 \u1604  \u1575 \u1604 \u1605 \u1587 \u1575 \u1593 \u1583  \u1575 \u1604 \u1584 \u1603 \u1610  (Bot Modal) */\
+        .modal-overlay \{\
+            position: fixed;\
+            top: 0;\
+            left: 0;\
+            width: 100%;\
+            height: 100%;\
+            background: rgba(0,0,0,0.8);\
+            backdrop-filter: blur(5px);\
+            display: none;\
+            align-items: center;\
+            justify-content: center;\
+            z-index: 2000;\
+        \}\
+\
+        .modal-content \{\
+            background: var(--bg-sidebar);\
+            border: 1px solid var(--gold);\
+            width: 90%;\
+            max-width: 500px;\
+            border-radius: 20px;\
+            padding: 30px;\
+            position: relative;\
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);\
+        \}\
+\
+        .modal-close \{\
+            position: absolute;\
+            top: 15px;\
+            left: 20px;\
+            background: none;\
+            border: none;\
+            color: var(--silver);\
+            font-size: 22px;\
+            cursor: pointer;\
+        \}\
+\
+        .modal-header \{\
+            display: flex;\
+            align-items: center;\
+            gap: 15px;\
+            margin-bottom: 20px;\
+            border-bottom: 1px solid rgba(255,255,255,0.1);\
+            padding-bottom: 15px;\
+        \}\
+\
+        .modal-header i \{\
+            font-size: 30px;\
+            color: var(--gold);\
+        \}\
+\
+        .bot-links \{\
+            display: flex;\
+            flex-direction: column;\
+            gap: 12px;\
+        \}\
+\
+        .bot-link-item \{\
+            background: var(--card-bg);\
+            border: 1px solid rgba(223, 177, 91, 0.2);\
+            padding: 12px 18px;\
+            border-radius: 10px;\
+            color: var(--white);\
+            text-decoration: none;\
+            display: flex;\
+            align-items: center;\
+            justify-content: space-between;\
+            transition: var(--transition);\
+        \}\
+\
+        .bot-link-item:hover \{\
+            background: rgba(223, 177, 91, 0.15);\
+            border-color: var(--gold);\
+            padding-right: 22px;\
+        \}\
+\
+        /* --- \uc0\u1575 \u1604 \u1578 \u1589 \u1605 \u1610 \u1605  \u1575 \u1604 \u1605 \u1578 \u1580 \u1575 \u1608 \u1576  (Responsive) --- */\
+        @media (max-width: 992px) \{\
+            aside \{\
+                right: -280px;\
+            \}\
+            aside.show \{\
+                right: 0;\
+            \}\
+            main \{\
+                margin-right: 0;\
+                padding: 20px;\
+                padding-top: 80px;\
+            \}\
+            .mobile-toggle \{\
+                display: block;\
+            \}\
+            .hero-top \{\
+                grid-template-columns: 1fr;\
+            \}\
+            .leadership-grid \{\
+                grid-template-columns: 1fr;\
+            \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+\
+    <!-- \uc0\u1586 \u1585  \u1575 \u1604 \u1602 \u1575 \u1574 \u1605 \u1577  \u1604 \u1604 \u1580 \u1608 \u1575 \u1604  -->\
+    <button class="mobile-toggle" onclick="toggleSidebar()">\
+        <i class="fa-solid fa-bars"></i>\
+    </button>\
+\
+    <!-- \uc0\u1575 \u1604 \u1588 \u1585 \u1610 \u1591  \u1575 \u1604 \u1580 \u1575 \u1606 \u1576 \u1610  \u1604 \u1604 \u1578 \u1606 \u1602 \u1604  -->\
+    <aside id="sidebar">\
+        <div class="sidebar-header">\
+            <h1>TEC COMMUNITY</h1>\
+        </div>\
+        <ul class="sidebar-menu">\
+            <li><a href="#home" class="nav-link active" onclick="switchSection('home', this)"><i class="fa-solid fa-house"></i> \uc0\u1575 \u1604 \u1588 \u1575 \u1588 \u1577  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610 \u1577 </a></li>\
+            <li><a href="#elite" class="nav-link" onclick="switchSection('elite', this)"><i class="fa-solid fa-crown"></i> \uc0\u1593 \u1604 \u1610 \u1575  \u1575 \u1604 \u1578 \u1610 \u1603 </a></li>\
+            <li><a href="#newspaper" class="nav-link" onclick="switchSection('newspaper', this)"><i class="fa-solid fa-newspaper"></i> \uc0\u1589 \u1581 \u1610 \u1601 \u1577  \u1575 \u1604 \u1578 \u1610 \u1603  (\u1578 \u1610 \u1603  \u1583 \u1608 \u1605 \u1610 \u1606 )</a></li>\
+            <li><a href="#interviews" class="nav-link" onclick="switchSection('interviews', this)"><i class="fa-solid fa-microphone-lines"></i> \uc0\u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  \u1575 \u1604 \u1578 \u1610 \u1603 </a></li>\
+            <li><a href="#servers" class="nav-link" onclick="switchSection('servers', this)"><i class="fa-solid fa-server"></i> \uc0\u1587 \u1610 \u1585 \u1601 \u1585 \u1575 \u1578  \u1578 \u1610 \u1603 </a></li>\
+            <li><a href="#unknown" class="nav-link" onclick="switchSection('unknown', this)"><i class="fa-solid fa-user-secret"></i> \uc0\u1605 \u1580 \u1607 \u1608 \u1604 </a></li>\
+        </ul>\
+        <div class="sidebar-footer">\
+            <p>&copy; 2026 TEC Community</p>\
+        </div>\
+    </aside>\
+\
+    <!-- \uc0\u1575 \u1604 \u1605 \u1581 \u1578 \u1608 \u1609  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610  -->\
+    <main>\
+\
+        <!-- 1. \uc0\u1575 \u1604 \u1588 \u1575 \u1588 \u1577  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610 \u1577  -->\
+        <section id="home" class="active-section">\
+            <h2 class="section-title">\uc0\u1575 \u1604 \u1588 \u1575 \u1588 \u1577  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610 \u1577 </h2>\
+            \
+            <!-- \uc0\u1588 \u1585 \u1610 \u1591  \u1575 \u1604 \u1576 \u1581 \u1579  \u1608 \u1575 \u1604 \u1586 \u1585  -->\
+            <div class="search-bot-bar">\
+                <div class="search-box">\
+                    <i class="fa-solid fa-magnifying-glass"></i>\
+                    <input type="text" id="siteSearch" placeholder="\uc0\u1575 \u1576 \u1581 \u1579  \u1601 \u1610  \u1571 \u1602 \u1587 \u1575 \u1605  \u1575 \u1604 \u1605 \u1608 \u1602 \u1593 ..." onkeyup="searchSite()">\
+                </div>\
+                <button class="bot-btn" onclick="openBotModal()">\
+                    <i class="fa-solid fa-robot"></i> \uc0\u1605 \u1587 \u1575 \u1593 \u1583  \u1575 \u1604 \u1576 \u1608 \u1578 \
+                </button>\
+            </div>\
+\
+            <!-- \uc0\u1605 \u1593 \u1604 \u1608 \u1605 \u1575 \u1578  \u1608 \u1578 \u1610 \u1603  \u1575 \u1604 \u1604 \u1608 \u1594 \u1608  3D -->\
+            <div class="hero-top">\
+                <div class="hero-info">\
+                    <h2>\uc0\u1605 \u1585 \u1581 \u1576 \u1575 \u1611  \u1576 \u1603 \u1605  \u1601 \u1610  \u1605 \u1580 \u1578 \u1605 \u1593  \u1575 \u1604 \u1578 \u1610 \u1603 </h2>\
+                    <p>\uc0\u1605 \u1606 \u1589 \u1577  \u1578 \u1580 \u1605 \u1593  \u1575 \u1604 \u1605 \u1576 \u1583 \u1593 \u1610 \u1606 \u1548  \u1575 \u1604 \u1605 \u1591 \u1608 \u1585 \u1610 \u1606 \u1548  \u1608 \u1575 \u1604 \u1589 \u1581 \u1601 \u1610 \u1610 \u1606  \u1578 \u1581 \u1578  \u1587 \u1602 \u1601  \u1608 \u1575 \u1581 \u1583 . \u1606 \u1602 \u1583 \u1605  \u1576 \u1610 \u1574 \u1577  \u1605 \u1578 \u1603 \u1575 \u1605 \u1604 \u1577  \u1578 \u1583 \u1605 \u1580  \u1575 \u1604 \u1578 \u1603 \u1606 \u1608 \u1604 \u1608 \u1580 \u1610 \u1575  \u1576 \u1575 \u1604 \u1605 \u1581 \u1578 \u1608 \u1609  \u1575 \u1604 \u1585 \u1575 \u1602 \u1610  \u1608 \u1575 \u1604 \u1605 \u1580 \u1578 \u1605 \u1593 \u1575 \u1578  \u1575 \u1604 \u1578 \u1601 \u1575 \u1593 \u1604 \u1610 \u1577  \u1576 \u1575 \u1604 \u1607 \u1608 \u1610 \u1577  \u1575 \u1604 \u1584 \u1607 \u1576 \u1610 \u1577  \u1608 \u1575 \u1604 \u1601 \u1590 \u1610 \u1577 .</p>\
+                </div>\
+                <div class="logo-3d-container">\
+                    <!-- \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1605 \u1604 \u1601  \u1575 \u1604 \u1605 \u1602 \u1578 \u1585 \u1581  \u1604 \u1604 \u1608 \u1594 \u1608  3D: tec-logo-3d.glb -->\
+                    <model-viewer src="tec-logo-3d.glb" alt="TEC 3D Logo" auto-rotate camera-controls disable-zoom>\
+                        <div slot="poster" class="logo-placeholder-text">\
+                            <i class="fa-solid fa-cube"></i>\
+                            <p>\uc0\u1590 \u1593  \u1605 \u1604 \u1601  \u1575 \u1604 \u1604 \u1608 \u1594 \u1608  3D \u1576 \u1575 \u1587 \u1605 :<br><b>tec-logo-3d.glb</b></p>\
+                        </div>\
+                    </model-viewer>\
+                </div>\
+            </div>\
+\
+            <!-- \uc0\u1576 \u1591 \u1575 \u1602 \u1577  \u1578 \u1593 \u1585 \u1610 \u1601  \u1575 \u1604 \u1605 \u1572 \u1587 \u1587  -->\
+            <div class="founder-card">\
+                <div class="founder-avatar">\
+                    <i class="fa-solid fa-user-tie"></i>\
+                </div>\
+                <div class="founder-info">\
+                    <h3>\uc0\u1575 \u1604 \u1605 \u1572 \u1587 \u1587  \u1608 \u1575 \u1604 \u1585 \u1574 \u1610 \u1587  \u1575 \u1604 \u1578 \u1606 \u1601 \u1610 \u1584 \u1610 </h3>\
+                    <p>\uc0\u1575 \u1604 \u1602 \u1575 \u1574 \u1583  \u1608 \u1575 \u1604 \u1605 \u1572 \u1587 \u1587  \u1604 \u1605 \u1580 \u1578 \u1605 \u1593  TEC Community\u1548  \u1575 \u1604 \u1605 \u1588 \u1585 \u1601  \u1593 \u1604 \u1609  \u1575 \u1604 \u1585 \u1572 \u1610 \u1577  \u1575 \u1604 \u1575 \u1587 \u1578 \u1585 \u1575 \u1578 \u1610 \u1580 \u1610 \u1577  \u1608 \u1578 \u1591 \u1608 \u1610 \u1585  \u1575 \u1604 \u1571 \u1602 \u1587 \u1575 \u1605  \u1608 \u1575 \u1604 \u1601 \u1593 \u1575 \u1604 \u1610 \u1575 \u1578  \u1575 \u1604 \u1578 \u1602 \u1606 \u1610 \u1577 .</p>\
+                </div>\
+            </div>\
+\
+            <!-- \uc0\u1575 \u1604 \u1571 \u1586 \u1585 \u1575 \u1585  \u1575 \u1604 \u1571 \u1585 \u1576 \u1593 \u1577  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610 \u1577  -->\
+            <div class="hero-links-grid">\
+                <a href="#newspaper" class="hero-link-btn" onclick="switchSection('newspaper', document.querySelector('[href=\\'#newspaper\\']'))">\
+                    <i class="fa-solid fa-newspaper"></i>\
+                    <span>\uc0\u1589 \u1581 \u1610 \u1601 \u1577  \u1575 \u1604 \u1578 \u1610 \u1603 </span>\
+                </a>\
+                <a href="#newspaper" class="hero-link-btn" onclick="switchSection('newspaper', document.querySelector('[href=\\'#newspaper\\']'))">\
+                    <i class="fa-solid fa-globe"></i>\
+                    <span>\uc0\u1589 \u1581 \u1610 \u1601 \u1577  \u1575 \u1604 \u1578 \u1610 \u1603  (\u1578 \u1610 \u1603  \u1583 \u1608 \u1605 \u1610 \u1606 )</span>\
+                </a>\
+                <a href="#interviews" class="hero-link-btn" onclick="switchSection('interviews', document.querySelector('[href=\\'#interviews\\']'))">\
+                    <i class="fa-solid fa-comments"></i>\
+                    <span>\uc0\u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  \u1575 \u1604 \u1578 \u1610 \u1603 </span>\
+                </a>\
+                <a href="https://wa.me/" target="_blank" class="hero-link-btn">\
+                    <i class="fa-brands fa-whatsapp"></i>\
+                    <span>\uc0\u1585 \u1575 \u1576 \u1591  \u1585 \u1602 \u1605 \u1610  \u1604 \u1604 \u1608 \u1575 \u1578 \u1587 </span>\
+                </a>\
+            </div>\
+        </section>\
+\
+        <!-- 2. \uc0\u1602 \u1587 \u1605  \u1593 \u1604 \u1610 \u1575  \u1575 \u1604 \u1578 \u1610 \u1603  -->\
+        <section id="elite">\
+            <h2 class="section-title">\uc0\u1593 \u1604 \u1610 \u1575  \u1575 \u1604 \u1578 \u1610 \u1603 </h2>\
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">\uc0\u1606 \u1582 \u1576 \u1577  \u1575 \u1604 \u1605 \u1580 \u1578 \u1605 \u1593  \u1608 \u1571 \u1589 \u1581 \u1575 \u1576  \u1575 \u1604 \u1571 \u1579 \u1585  \u1608 \u1575 \u1604 \u1602 \u1610 \u1575 \u1583 \u1577  \u1575 \u1604 \u1593 \u1604 \u1610 \u1575  \u1601 \u1610  TEC Community.</p>\
+            \
+            <div class="cards-grid">\
+                <!-- 6 \uc0\u1576 \u1591 \u1575 \u1602 \u1575 \u1578  \u1601 \u1585 \u1583 \u1610 \u1577  \u1601 \u1575 \u1585 \u1594 \u1577  \u1604 \u1604 \u1589 \u1608 \u1585  \u1608 \u1575 \u1604 \u1571 \u1587 \u1605 \u1575 \u1569  -->\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-user"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1593 \u1590 \u1608  \u1575 \u1604 \u1571 \u1608 \u1604  ]</h3>\
+                    <p>\uc0\u1578 \u1593 \u1585 \u1610 \u1601  \u1605 \u1608 \u1580 \u1586  \u1571 \u1608  \u1575 \u1604 \u1583 \u1608 \u1585  \u1575 \u1604 \u1602 \u1610 \u1575 \u1583 \u1610  \u1607 \u1606 \u1575 ...</p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-user"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1593 \u1590 \u1608  \u1575 \u1604 \u1579 \u1575 \u1606 \u1610  ]</h3>\
+                    <p>\uc0\u1578 \u1593 \u1585 \u1610 \u1601  \u1605 \u1608 \u1580 \u1586  \u1571 \u1608  \u1575 \u1604 \u1583 \u1608 \u1585  \u1575 \u1604 \u1602 \u1610 \u1575 \u1583 \u1610  \u1607 \u1606 \u1575 ...</p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-user"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1593 \u1590 \u1608  \u1575 \u1604 \u1579 \u1575 \u1604 \u1579  ]</h3>\
+                    <p>\uc0\u1578 \u1593 \u1585 \u1610 \u1601  \u1605 \u1608 \u1580 \u1586  \u1571 \u1608  \u1575 \u1604 \u1583 \u1608 \u1585  \u1575 \u1604 \u1602 \u1610 \u1575 \u1583 \u1610  \u1607 \u1606 \u1575 ...</p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-user"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1593 \u1590 \u1608  \u1575 \u1604 \u1585 \u1575 \u1576 \u1593  ]</h3>\
+                    <p>\uc0\u1578 \u1593 \u1585 \u1610 \u1601  \u1605 \u1608 \u1580 \u1586  \u1571 \u1608  \u1575 \u1604 \u1583 \u1608 \u1585  \u1575 \u1604 \u1602 \u1610 \u1575 \u1583 \u1610  \u1607 \u1606 \u1575 ...</p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-user"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1593 \u1590 \u1608  \u1575 \u1604 \u1582 \u1575 \u1605 \u1587  ]</h3>\
+                    <p>\uc0\u1578 \u1593 \u1585 \u1610 \u1601  \u1605 \u1608 \u1580 \u1586  \u1571 \u1608  \u1575 \u1604 \u1583 \u1608 \u1585  \u1575 \u1604 \u1602 \u1610 \u1575 \u1583 \u1610  \u1607 \u1606 \u1575 ...</p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-user"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1593 \u1590 \u1608  \u1575 \u1604 \u1587 \u1575 \u1583 \u1587  ]</h3>\
+                    <p>\uc0\u1578 \u1593 \u1585 \u1610 \u1601  \u1605 \u1608 \u1580 \u1586  \u1571 \u1608  \u1575 \u1604 \u1583 \u1608 \u1585  \u1575 \u1604 \u1602 \u1610 \u1575 \u1583 \u1610  \u1607 \u1606 \u1575 ...</p>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- 3. \uc0\u1589 \u1581 \u1610 \u1601 \u1577  \u1575 \u1604 \u1578 \u1610 \u1603  (\u1578 \u1610 \u1603  \u1583 \u1608 \u1605 \u1610 \u1606 ) -->\
+        <section id="newspaper">\
+            <h2 class="section-title">\uc0\u1589 \u1581 \u1610 \u1601 \u1577  \u1575 \u1604 \u1578 \u1610 \u1603  (\u1578 \u1610 \u1603  \u1583 \u1608 \u1605 \u1610 \u1606 )</h2>\
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">\uc0\u1575 \u1604 \u1606 \u1575 \u1601 \u1584 \u1577  \u1575 \u1604 \u1573 \u1582 \u1576 \u1575 \u1585 \u1610 \u1577  \u1608 \u1575 \u1604 \u1605 \u1602 \u1575 \u1604 \u1575 \u1578  \u1575 \u1604 \u1585 \u1587 \u1605 \u1610 \u1577  \u1604 \u1604 \u1605 \u1580 \u1578 \u1605 \u1593 \u1548  \u1578 \u1594 \u1591 \u1610  \u1571 \u1581 \u1583 \u1579  \u1575 \u1604 \u1571 \u1582 \u1576 \u1575 \u1585  \u1608 \u1575 \u1604 \u1578 \u1602 \u1575 \u1585 \u1610 \u1585  \u1575 \u1604 \u1578 \u1602 \u1606 \u1610 \u1577 .</p>\
+            \
+            <div class="leadership-grid">\
+                <div class="leader-card">\
+                    <div class="card-img-placeholder" style="margin: 0 auto 15px auto;"><i class="fa-solid fa-crown"></i></div>\
+                    <h3>\uc0\u1602 \u1575 \u1574 \u1583  \u1575 \u1604 \u1589 \u1581 \u1610 \u1601 \u1577 </h3>\
+                    <p>[ \uc0\u1575 \u1587 \u1605  \u1602 \u1575 \u1574 \u1583  \u1575 \u1604 \u1589 \u1581 \u1610 \u1601 \u1577  ]</p>\
+                </div>\
+                <div class="leader-card">\
+                    <div class="card-img-placeholder" style="margin: 0 auto 15px auto;"><i class="fa-solid fa-shield-halved"></i></div>\
+                    <h3>\uc0\u1606 \u1575 \u1574 \u1576  \u1575 \u1604 \u1589 \u1581 \u1610 \u1601 \u1577 </h3>\
+                    <p>[ \uc0\u1575 \u1587 \u1605  \u1606 \u1575 \u1574 \u1576  \u1575 \u1604 \u1589 \u1581 \u1610 \u1601 \u1577  ]</p>\
+                </div>\
+            </div>\
+\
+            <h3 style="color: var(--gold); margin-bottom: 15px; font-size: 22px;">\uc0\u1591 \u1575 \u1602 \u1605  \u1575 \u1604 \u1589 \u1581 \u1601 \u1610 \u1610 \u1606 </h3>\
+            <div class="cards-grid">\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-pen-nib"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1589 \u1581 \u1601 \u1610  ]</h3>\
+                    <p>\uc0\u1605 \u1581 \u1602 \u1602  \u1589 \u1581 \u1601 \u1610  / \u1605 \u1581 \u1585 \u1585  \u1605 \u1602 \u1575 \u1604 \u1575 \u1578 </p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-pen-nib"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1589 \u1581 \u1601 \u1610  ]</h3>\
+                    <p>\uc0\u1589 \u1581 \u1601 \u1610  \u1578 \u1602 \u1606 \u1610 </p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-pen-nib"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1589 \u1581 \u1601 \u1610  ]</h3>\
+                    <p>\uc0\u1605 \u1585 \u1575 \u1587 \u1604  \u1589 \u1581 \u1601 \u1610 </p>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- 4. \uc0\u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  \u1575 \u1604 \u1578 \u1610 \u1603  -->\
+        <section id="interviews">\
+            <h2 class="section-title">\uc0\u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  \u1575 \u1604 \u1578 \u1610 \u1603 </h2>\
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">\uc0\u1604 \u1602 \u1575 \u1569 \u1575 \u1578  \u1581 \u1589 \u1585 \u1610 \u1577  \u1605 \u1593  \u1571 \u1576 \u1585 \u1586  \u1575 \u1604 \u1588 \u1582 \u1589 \u1610 \u1575 \u1578  \u1608 \u1575 \u1604 \u1605 \u1576 \u1583 \u1593 \u1610 \u1606  \u1583 \u1575 \u1582 \u1604  \u1608 \u1582 \u1575 \u1585 \u1580  \u1575 \u1604 \u1605 \u1580 \u1578 \u1605 \u1593 .</p>\
+            \
+            <div class="leadership-grid">\
+                <div class="leader-card">\
+                    <div class="card-img-placeholder" style="margin: 0 auto 15px auto;"><i class="fa-solid fa-microphone"></i></div>\
+                    <h3>\uc0\u1602 \u1575 \u1574 \u1583  \u1575 \u1604 \u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578 </h3>\
+                    <p>[ \uc0\u1575 \u1587 \u1605  \u1602 \u1575 \u1574 \u1583  \u1575 \u1604 \u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  ]</p>\
+                </div>\
+                <div class="leader-card">\
+                    <div class="card-img-placeholder" style="margin: 0 auto 15px auto;"><i class="fa-solid fa-user-shield"></i></div>\
+                    <h3>\uc0\u1606 \u1575 \u1574 \u1576  \u1575 \u1604 \u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578 </h3>\
+                    <p>[ \uc0\u1575 \u1587 \u1605  \u1606 \u1575 \u1574 \u1576  \u1575 \u1604 \u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  ]</p>\
+                </div>\
+            </div>\
+\
+            <h3 style="color: var(--gold); margin-bottom: 15px; font-size: 22px;">\uc0\u1591 \u1575 \u1602 \u1605  \u1605 \u1602 \u1583 \u1605 \u1610  \u1575 \u1604 \u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578 </h3>\
+            <div class="cards-grid">\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-video"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1605 \u1581 \u1575 \u1608 \u1585  ]</h3>\
+                    <p>\uc0\u1605 \u1602 \u1583 \u1605  \u1604 \u1602 \u1575 \u1569 \u1575 \u1578  \u1608 \u1581 \u1608 \u1575 \u1585 \u1575 \u1578 </p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-video"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1605 \u1581 \u1575 \u1608 \u1585  ]</h3>\
+                    <p>\uc0\u1605 \u1593 \u1583  \u1571 \u1587 \u1574 \u1604 \u1577  \u1608 \u1605 \u1602 \u1575 \u1591 \u1593 </p>\
+                </div>\
+                <div class="card">\
+                    <div class="card-img-placeholder"><i class="fa-solid fa-video"></i></div>\
+                    <h3>[ \uc0\u1575 \u1587 \u1605  \u1575 \u1604 \u1605 \u1581 \u1575 \u1608 \u1585  ]</h3>\
+                    <p>\uc0\u1605 \u1584 \u1610 \u1593  \u1608 \u1605 \u1581 \u1575 \u1608 \u1585  \u1605 \u1610 \u1583 \u1575 \u1606 \u1610 </p>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- 5. \uc0\u1587 \u1610 \u1585 \u1601 \u1585 \u1575 \u1578  \u1578 \u1610 \u1603  -->\
+        <section id="servers">\
+            <h2 class="section-title">\uc0\u1587 \u1610 \u1585 \u1601 \u1585 \u1575 \u1578  \u1578 \u1610 \u1603 </h2>\
+            <div class="maintenance-box">\
+                <i class="fa-solid fa-triangle-exclamation"></i>\
+                <h3>\uc0\u1605 \u1602 \u1601 \u1604  \u1604 \u1604 \u1589 \u1610 \u1575 \u1606 \u1577 </h3>\
+                <p>\uc0\u1606 \u1593 \u1605 \u1604  \u1581 \u1575 \u1604 \u1610 \u1575 \u1611  \u1593 \u1604 \u1609  \u1578 \u1591 \u1608 \u1610 \u1585  \u1608 \u1578 \u1581 \u1583 \u1610 \u1579  \u1575 \u1604 \u1576 \u1606 \u1610 \u1577  \u1575 \u1604 \u1578 \u1581 \u1578 \u1610 \u1577  \u1604 \u1604 \u1587 \u1610 \u1585 \u1601 \u1585 \u1575 \u1578  \u1604 \u1578 \u1602 \u1583 \u1610 \u1605  \u1571 \u1601 \u1590 \u1604  \u1571 \u1583 \u1575 \u1569  \u1605 \u1605 \u1603 \u1606 . \u1578 \u1585 \u1602 \u1576 \u1608 \u1575  \u1575 \u1604 \u1573 \u1591 \u1604 \u1575 \u1602  \u1575 \u1604 \u1602 \u1585 \u1610 \u1576 !</p>\
+            </div>\
+        </section>\
+\
+        <!-- 6. \uc0\u1605 \u1580 \u1607 \u1608 \u1604  -->\
+        <section id="unknown">\
+            <h2 class="section-title">\uc0\u1605 \u1580 \u1607 \u1608 \u1604 </h2>\
+            <div class="maintenance-box">\
+                <i class="fa-solid fa-lock"></i>\
+                <h3>\uc0\u1605 \u1602 \u1601 \u1604  \u1604 \u1604 \u1589 \u1610 \u1575 \u1606 \u1577 </h3>\
+                <p>\uc0\u1607 \u1584 \u1575  \u1575 \u1604 \u1602 \u1587 \u1605  \u1587 \u1585 \u1610  \u1608 \u1602 \u1610 \u1583  \u1575 \u1604 \u1573 \u1606 \u1588 \u1575 \u1569  \u1608 \u1575 \u1604 \u1578 \u1591 \u1608 \u1610 \u1585  \u1581 \u1575 \u1604 \u1610 \u1575 \u1611 . \u1587 \u1610 \u1578 \u1605  \u1575 \u1604 \u1603 \u1588 \u1601  \u1593 \u1606  \u1578 \u1601 \u1575 \u1589 \u1610 \u1604 \u1607  \u1602 \u1585 \u1610 \u1576 \u1575 \u1611 .</p>\
+            </div>\
+        </section>\
+\
+    </main>\
+\
+    <!-- \uc0\u1605 \u1608 \u1583 \u1575 \u1604  \u1605 \u1587 \u1575 \u1593 \u1583  \u1575 \u1604 \u1576 \u1608 \u1578  \u1575 \u1604 \u1605 \u1585 \u1576 \u1608 \u1591  \u1576 \u1580 \u1605 \u1610 \u1593  \u1575 \u1604 \u1571 \u1602 \u1587 \u1575 \u1605  -->\
+    <div class="modal-overlay" id="botModal">\
+        <div class="modal-content">\
+            <button class="modal-close" onclick="closeBotModal()"><i class="fa-solid fa-xmark"></i></button>\
+            <div class="modal-header">\
+                <i class="fa-solid fa-robot"></i>\
+                <div>\
+                    <h3 style="color: var(--gold); font-size: 20px;">\uc0\u1605 \u1587 \u1575 \u1593 \u1583  \u1578 \u1610 \u1603  \u1575 \u1604 \u1584 \u1603 \u1610 </h3>\
+                    <p style="color: var(--silver); font-size: 14px;">\uc0\u1575 \u1582 \u1578 \u1585  \u1575 \u1604 \u1602 \u1587 \u1605  \u1575 \u1604 \u1584 \u1610  \u1578 \u1585 \u1594 \u1576  \u1576 \u1575 \u1604 \u1575 \u1606 \u1578 \u1602 \u1575 \u1604  \u1573 \u1604 \u1610 \u1607  \u1601 \u1608 \u1585 \u1575 \u1611 :</p>\
+                </div>\
+            </div>\
+            <div class="bot-links">\
+                <a href="#home" class="bot-link-item" onclick="botNavigate('home')"><span>\uc0\u1575 \u1604 \u1588 \u1575 \u1588 \u1577  \u1575 \u1604 \u1585 \u1574 \u1610 \u1587 \u1610 \u1577 </span><i class="fa-solid fa-arrow-left"></i></a>\
+                <a href="#elite" class="bot-link-item" onclick="botNavigate('elite')"><span>\uc0\u1593 \u1604 \u1610 \u1575  \u1575 \u1604 \u1578 \u1610 \u1603 </span><i class="fa-solid fa-arrow-left"></i></a>\
+                <a href="#newspaper" class="bot-link-item" onclick="botNavigate('newspaper')"><span>\uc0\u1589 \u1581 \u1610 \u1601 \u1577  \u1575 \u1604 \u1578 \u1610 \u1603  (\u1578 \u1610 \u1603  \u1583 \u1608 \u1605 \u1610 \u1606 )</span><i class="fa-solid fa-arrow-left"></i></a>\
+                <a href="#interviews" class="bot-link-item" onclick="botNavigate('interviews')"><span>\uc0\u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578  \u1575 \u1604 \u1578 \u1610 \u1603 </span><i class="fa-solid fa-arrow-left"></i></a>\
+                <a href="#servers" class="bot-link-item" onclick="botNavigate('servers')"><span>\uc0\u1587 \u1610 \u1585 \u1601 \u1585 \u1575 \u1578  \u1578 \u1610 \u1603  (\u1589 \u1610 \u1575 \u1606 \u1577 )</span><i class="fa-solid fa-arrow-left"></i></a>\
+                <a href="#unknown" class="bot-link-item" onclick="botNavigate('unknown')"><span>\uc0\u1605 \u1580 \u1607 \u1608 \u1604  (\u1589 \u1610 \u1575 \u1606 \u1577 )</span><i class="fa-solid fa-arrow-left"></i></a>\
+            </div>\
+        </div>\
+    </div>\
+\
+    <!-- JavaScript \uc0\u1604 \u1604 \u1578 \u1606 \u1602 \u1604  \u1608 \u1575 \u1604 \u1578 \u1601 \u1575 \u1593 \u1604  -->\
+    <script>\
+        // \uc0\u1578 \u1576 \u1583 \u1610 \u1604  \u1575 \u1604 \u1571 \u1602 \u1587 \u1575 \u1605  \u1593 \u1576 \u1585  \u1575 \u1604 \u1588 \u1585 \u1610 \u1591  \u1575 \u1604 \u1580 \u1575 \u1606 \u1576 \u1610  \u1608 \u1575 \u1604 \u1588 \u1575 \u1588 \u1577 \
+        function switchSection(sectionId, element) \{\
+            // \uc0\u1573 \u1582 \u1601 \u1575 \u1569  \u1580 \u1605 \u1610 \u1593  \u1575 \u1604 \u1571 \u1602 \u1587 \u1575 \u1605 \
+            document.querySelectorAll('main section').forEach(sec => \{\
+                sec.classList.remove('active-section');\
+            \});\
+\
+            // \uc0\u1573 \u1592 \u1607 \u1575 \u1585  \u1575 \u1604 \u1602 \u1587 \u1605  \u1575 \u1604 \u1605 \u1591 \u1604 \u1608 \u1576 \
+            document.getElementById(sectionId).classList.add('active-section');\
+\
+            // \uc0\u1578 \u1581 \u1583 \u1610 \u1579  \u1575 \u1604 \u1593 \u1606 \u1589 \u1585  \u1575 \u1604 \u1606 \u1588 \u1591  \u1601 \u1610  \u1575 \u1604 \u1602 \u1575 \u1574 \u1605 \u1577 \
+            document.querySelectorAll('.sidebar-menu a').forEach(link => \{\
+                link.classList.remove('active');\
+            \});\
+            if(element) \{\
+                element.classList.add('active');\
+            \}\
+\
+            // \uc0\u1573 \u1594 \u1604 \u1575 \u1602  \u1575 \u1604 \u1588 \u1585 \u1610 \u1591  \u1575 \u1604 \u1580 \u1575 \u1606 \u1576 \u1610  \u1601 \u1610  \u1575 \u1604 \u1580 \u1608 \u1575 \u1604  \u1578 \u1604 \u1602 \u1575 \u1574 \u1610 \u1575 \u1611  \u1593 \u1606 \u1583  \u1575 \u1604 \u1606 \u1602 \u1585 \
+            if(window.innerWidth <= 992) \{\
+                document.getElementById('sidebar').classList.remove('show');\
+            \}\
+\
+            window.scrollTo(0, 0);\
+        \}\
+\
+        // \uc0\u1601 \u1578 \u1581  \u1608 \u1573 \u1594 \u1604 \u1575 \u1602  \u1575 \u1604 \u1588 \u1585 \u1610 \u1591  \u1575 \u1604 \u1580 \u1575 \u1606 \u1576 \u1610  \u1601 \u1610  \u1575 \u1604 \u1580 \u1608 \u1575 \u1604 \
+        function toggleSidebar() \{\
+            document.getElementById('sidebar').classList.toggle('show');\
+        \}\
+\
+        // \uc0\u1605 \u1608 \u1583 \u1575 \u1604  \u1575 \u1604 \u1576 \u1608 \u1578 \
+        function openBotModal() \{\
+            document.getElementById('botModal').style.display = 'flex';\
+        \}\
+\
+        function closeBotModal() \{\
+            document.getElementById('botModal').style.display = 'none';\
+        \}\
+\
+        function botNavigate(sectionId) \{\
+            closeBotModal();\
+            const targetLink = document.querySelector(`[href='#$\{sectionId\}']`);\
+            switchSection(sectionId, targetLink);\
+        \}\
+\
+        // \uc0\u1608 \u1592 \u1610 \u1601 \u1577  \u1575 \u1604 \u1576 \u1581 \u1579  \u1575 \u1604 \u1587 \u1585 \u1610 \u1593  \u1583 \u1575 \u1582 \u1604  \u1575 \u1604 \u1605 \u1608 \u1602 \u1593 \
+        function searchSite() \{\
+            let input = document.getElementById('siteSearch').value.toLowerCase();\
+            let sections = ['home', 'elite', 'newspaper', 'interviews', 'servers', 'unknown'];\
+            \
+            if(input.trim() === '') return;\
+\
+            // \uc0\u1573 \u1584 \u1575  \u1603 \u1578 \u1576  \u1575 \u1604 \u1605 \u1587 \u1578 \u1582 \u1583 \u1605  \u1603 \u1604 \u1605 \u1577  \u1605 \u1601 \u1578 \u1575 \u1581 \u1610 \u1577 \u1548  \u1610 \u1605 \u1603 \u1606  \u1578 \u1608 \u1580 \u1610 \u1607 \u1607  \u1571 \u1608  \u1573 \u1576 \u1585 \u1575 \u1586  \u1575 \u1604 \u1606 \u1578 \u1575 \u1574 \u1580 \
+            if(input.includes('\uc0\u1593 \u1604 \u1610 \u1575 ') || input.includes('\u1575 \u1604 \u1606 \u1582 \u1576 \u1577 ')) \{\
+                switchSection('elite', document.querySelector('[href="#elite"]'));\
+            \} else if(input.includes('\uc0\u1589 \u1581 \u1610 \u1601 \u1577 ') || input.includes('\u1583 \u1608 \u1605 \u1610 \u1606 ')) \{\
+                switchSection('newspaper', document.querySelector('[href="#newspaper"]'));\
+            \} else if(input.includes('\uc0\u1605 \u1602 \u1575 \u1576 \u1604 \u1575 \u1578 ')) \{\
+                switchSection('interviews', document.querySelector('[href="#interviews"]'));\
+            \} else if(input.includes('\uc0\u1587 \u1610 \u1585 \u1601 \u1585 ')) \{\
+                switchSection('servers', document.querySelector('[href="#servers"]'));\
+            \}\
+        \}\
+    </script>\
+</body>\
+</html>}
