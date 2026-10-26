@@ -890,20 +890,22 @@
             </div>
         </section>
 
-        <!-- 2. قسم التعاقدات (أماكن الروابط والشعارات واضحة أسفل البطاقات) -->
+        <!-- 2. قسم التعاقدات (تستطيع كتابة اسم الزر الثالث المخصص لكل نقابة بنفسك هنا) -->
         <section id="contracts">
             <h2 class="section-title">قسم التعاقدات</h2>
             <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community. (اضغط على البطاقة للانتقال إلى روابطها بعد شاشة التحميل)</p>
             
             <div class="cards-grid">
-                <!-- بطاقة نقابة سيريوس (الأولى) -->
+                <!-- بطاقة نقابة سيريوس (الأولى) - الزر الثالث مخصص باسم "بنك سيريوس" -->
                 <div class="card guild-card" onclick="openGuildWithLoading(
                     'سيريوس', 
                     'القائد ايانوالويبي', 
                     'https://i.ibb.co/XfxLGyjg/image.png', 
                     'https://chat.whatsapp.com/رابط_مجموعة_سيريوس', 
                     'https://wa.me/رقم_قائد_سيريوس', 
-                    'https://chat.whatsapp.com/رابط_قناة_سيريوس'
+                    'بنك سيريوس',
+                    'https://chat.whatsapp.com/رابط_بنك_سيريوس',
+                    'fa-solid fa-vault'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="شعار سيريوس">
@@ -912,14 +914,16 @@
                     <p>لقب القائد: القائد ايانوالويبي</p>
                 </div>
 
-                <!-- بطاقة النقابة الثانية -->
+                <!-- بطاقة النقابة الثانية - الزر الثالث مخصص باسم "معرض النقابة الثانية" مثلاً -->
                 <div class="card guild-card" onclick="openGuildWithLoading(
                     'اسم النقابة الثانية', 
                     'لقب قائد النقابة الثانية', 
                     'رابط_شعار_النقابة_الثانية.png', 
                     'رابط_مجموعة_واتساب_الثانية', 
                     'رابط_تواصل_قائد_الثانية', 
-                    'رابط_قناة_الثانية'
+                    'معرض النقابة الثانية',
+                    'رابط_المعرض_خاصتهم',
+                    'fa-solid fa-store'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
@@ -928,14 +932,16 @@
                     <p>لقب القائد: [ لقب قائد النقابة الثانية ]</p>
                 </div>
 
-                <!-- بطاقة النقابة الثالثة -->
+                <!-- بطاقة النقابة الثالثة - الزر الثالث مخصص باسم أي شيء تريده مثلاً "متجر النقابة الثالثة" -->
                 <div class="card guild-card" onclick="openGuildWithLoading(
                     'اسم النقابة الثالثة', 
                     'لقب قائد النقابة الثالثة', 
                     'رابط_شعار_النقابة_الثالثة.png', 
                     'رابط_مجموعة_واتساب_الثالثة', 
                     'رابط_تواصل_قائد_الثالثة', 
-                    'رابط_قناة_الثالثة'
+                    'متجر النقابة الثالثة',
+                    'رابط_المتجر_خاصتهم',
+                    'fa-solid fa-cart-shopping'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
@@ -986,14 +992,15 @@
                     </a>
                 </div>
 
+                <!-- البطاقة الثالثة المخصصة بالكامل (اسم الزر، الأيقونة، والرابط تتغير حسب ما تكتبه لكل نقابة) -->
                 <div class="card">
-                    <div class="card-img-container" style="color: var(--silver); border-color: var(--silver);">
-                        <i class="fa-solid fa-bullhorn"></i>
+                    <div class="card-img-container" style="color: var(--gold); border-color: var(--gold);">
+                        <i id="guildCustomIcon" class="fa-solid fa-star"></i>
                     </div>
-                    <h3>بنك سيريوس</h3>
-                    <p style="margin-bottom: 15px;">البنك حيث توجد جميع اموال الخزينة.</p>
-                    <a id="guildChannelBtn" href="#" target="_blank" class="action-btn whatsapp-btn" style="min-width: auto; padding: 10px; background: #128c7e; border-color: #128c7e; color: #fff;">
-                        <i class="fa-solid fa-newspaper"></i> دخول البنك
+                    <h3 id="guildCustomTitle">رابط خاص</h3>
+                    <p style="margin-bottom: 15px;" id="guildCustomDesc">رابط مخصص إضافي لهذه النقابة.</p>
+                    <a id="guildCustomBtn" href="#" target="_blank" class="action-btn leader-btn" style="min-width: auto; padding: 10px; background: rgba(223, 177, 91, 0.15);">
+                        <i id="guildCustomBtnIcon" class="fa-solid fa-link"></i> <span id="guildCustomBtnText">دخول</span>
                     </a>
                 </div>
             </div>
@@ -1237,8 +1244,8 @@
             switchSection(sectionId, targetLink);
         }
 
-        // --- وظيفة شاشة التحميل عند الضغط لدخول الشاشة المنفصلة (لمدة 5 ثوانٍ مع شعار النقابة المخصص) ---
-        function openGuildWithLoading(name, leaderTitle, logoUrl, groupUrl, leaderUrl, channelUrl) {
+        // --- وظيفة شاشة التحميل ---
+        function openGuildWithLoading(name, leaderTitle, logoUrl, groupUrl, leaderUrl, customBtnName, customUrl, customIcon) {
             const modal = document.getElementById('loadingModal');
             const logoImg = document.getElementById('loadingGuildLogo');
             const titleEl = document.getElementById('loadingTitle');
@@ -1254,15 +1261,14 @@
 
             modal.style.display = 'flex';
 
-            // الانتظار لمدة 5 ثوانٍ ثم تعبئة البيانات والانتقال للشاشة المنفصلة
             setTimeout(() => {
                 modal.style.display = 'none';
-                openGuildDetails(name, leaderTitle, logoUrl, groupUrl, leaderUrl, channelUrl);
+                openGuildDetails(name, leaderTitle, logoUrl, groupUrl, leaderUrl, customBtnName, customUrl, customIcon);
             }, 5000);
         }
 
-        // --- عرض الشاشة المنفصلة الخاصة بالروابط وتحديث أزرارها ---
-        function openGuildDetails(name, leaderTitle, logoUrl, groupUrl, leaderUrl, channelUrl) {
+        // --- عرض الشاشة المنفصلة وتخصيص الزر الثالث لكل نقابة تماماً كما كتبتَه ---
+        function openGuildDetails(name, leaderTitle, logoUrl, groupUrl, leaderUrl, customBtnName, customUrl, customIcon) {
             document.getElementById('guildBannerTitle').innerText = name;
             document.getElementById('guildBannerLeader').innerText = "لقب القائد: " + leaderTitle;
             
@@ -1273,17 +1279,23 @@
                 logoContainer.innerHTML = `<i class="fa-solid fa-building-shield"></i>`;
             }
 
-            // تحديث روابط الأزرار الخاصة بالنقابة المختارة
+            // الروابط الأساسية
             document.getElementById('guildGroupBtn').href = groupUrl || "https://chat.whatsapp.com/";
             document.getElementById('guildLeaderBtn').href = leaderUrl || "https://wa.me/";
-            document.getElementById('guildChannelBtn').href = channelUrl || "https://chat.whatsapp.com/";
 
-            // إظهار رابط "روابط النقابة" في القائمة الجانبية والانتقال لها
+            // تخصيص الزر الثالث بالكامل حسب اسم النقابة (مثل: بنك سيريوس، معرض النقابة الثانية، إلخ)
+            document.getElementById('guildCustomTitle').innerText = customBtnName;
+            document.getElementById('guildCustomDesc').innerText = "الانتقال المباشر إلى " + customBtnName + " الخاصة بـ " + name + ".";
+            document.getElementById('guildCustomBtnText').innerText = customBtnName;
+            document.getElementById('guildCustomBtn').href = customUrl || "#";
+            
+            // تخصيص الأيقونة الخاصة بالزر
+            document.getElementById('guildCustomIcon').className = customIcon || "fa-solid fa-star";
+            document.getElementById('guildCustomBtnIcon').className = customIcon || "fa-solid fa-link";
+
             const detailsLi = document.getElementById('guildDetailsNavLi');
             detailsLi.style.display = 'block';
-            const detailsLink = detailsLi.querySelector('a');
-
-            switchSection('guild-details', detailsLink);
+            switchSection('guild-details', detailsLi.querySelector('a'));
         }
 
         // --- وظائف تكبير الصور (Lightbox) ---
