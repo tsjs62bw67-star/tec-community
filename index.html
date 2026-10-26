@@ -386,7 +386,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
-        /* حاوية الصورة في البطاقات للحفاظ على الأبعاد ثابتة */
+        /* حاوية الصورة في البطاقات */
         .card-img-container {
             width: 100px;
             height: 100px;
@@ -411,7 +411,6 @@
             box-shadow: 0 0 15px rgba(223, 177, 91, 0.4);
         }
 
-        /* حماية وتثبيت أبعاد وس الحجم داخل البطاقات */
         .card-img-container img {
             width: 100%;
             height: 100%;
@@ -420,7 +419,7 @@
             display: block;
         }
 
-        /* تخصيص بطاقات النقابات لتكون قابلة للنقر بشكل كامل */
+        /* بطاقات النقابات القابلة للنقر للانتقال لصفحة الروابط */
         .guild-card {
             cursor: pointer;
             position: relative;
@@ -546,7 +545,7 @@
             color: var(--silver);
         }
 
-        /* --- قسم تفاصيل النقابة المنفرد --- */
+        /* --- قسم تفاصيل روابط النقابة المنفرد (الشاشة المنفصلة) --- */
         .guild-details-banner {
             background: linear-gradient(135deg, rgba(223, 177, 91, 0.15), var(--card-bg));
             border: 1px solid var(--gold);
@@ -642,6 +641,56 @@
             color: var(--white);
             font-size: 28px;
             cursor: pointer;
+        }
+
+        /* --- شاشة التحميل (لمدة 5 ثوانٍ عند الضغط لدخول قسم الروابط) --- */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(7, 9, 14, 0.95);
+            backdrop-filter: blur(10px);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 4000;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading-guild-logo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 0 30px rgba(223, 177, 91, 0.4);
+            animation: pulseLogo 1.5s infinite;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(223, 177, 91, 0.2);
+            border-top: 4px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* مودال المساعد الذكي (Bot Modal) */
@@ -763,7 +812,7 @@
         <ul class="sidebar-menu">
             <li><a href="#home" class="nav-link active" onclick="switchSection('home', this)"><i class="fa-solid fa-house"></i> الشاشة الرئيسية</a></li>
             <li><a href="#contracts" class="nav-link" onclick="switchSection('contracts', this)"><i class="fa-solid fa-handshake"></i> التعاقدات</a></li>
-            <li><a href="#guild-details" class="nav-link" onclick="switchSection('guild-details', this)"><i class="fa-solid fa-link"></i> روابط النقابة</a></li>
+            <li id="guildDetailsNavLi" style="display: none;"><a href="#guild-details" class="nav-link" onclick="switchSection('guild-details', this)"><i class="fa-solid fa-link"></i> روابط النقابة</a></li>
             <li><a href="#elite" class="nav-link" onclick="switchSection('elite', this)"><i class="fa-solid fa-crown"></i> عليا التيك</a></li>
             <li><a href="#newspaper" class="nav-link" onclick="switchSection('newspaper', this)"><i class="fa-solid fa-newspaper"></i> صحيفة التيك (تيك دومين)</a></li>
             <li><a href="#interviews" class="nav-link" onclick="switchSection('interviews', this)"><i class="fa-solid fa-microphone-lines"></i> مقابلات التيك</a></li>
@@ -841,14 +890,21 @@
             </div>
         </section>
 
-        <!-- 2. قسم التعاقدات -->
+        <!-- 2. قسم التعاقدات (أماكن الروابط والشعارات واضحة أسفل البطاقات) -->
         <section id="contracts">
             <h2 class="section-title">قسم التعاقدات</h2>
-            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community. (اضغط على البطاقة للانتقال إلى روابطها)</p>
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community. (اضغط على البطاقة للانتقال إلى روابطها بعد شاشة التحميل)</p>
             
             <div class="cards-grid">
                 <!-- بطاقة نقابة سيريوس (الأولى) -->
-                <div class="card guild-card" onclick="openGuildDetails('سيريوس', 'القائد ايانوالويبي', 'https://i.ibb.co/XfxLGyjg/image.png')">
+                <div class="card guild-card" onclick="openGuildWithLoading(
+                    'سيريوس', 
+                    'القائد ايانوالويبي', 
+                    'https://i.ibb.co/XfxLGyjg/image.png', 
+                    'https://chat.whatsapp.com/رابط_مجموعة_سيريوس', 
+                    'https://wa.me/رقم_قائد_سيريوس', 
+                    'https://chat.whatsapp.com/رابط_قناة_سيريوس'
+                )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="شعار سيريوس">
                     </div>
@@ -857,7 +913,14 @@
                 </div>
 
                 <!-- بطاقة النقابة الثانية -->
-                <div class="card guild-card" onclick="openGuildDetails('اسم النقابة الثانية', 'لقب قائد النقابة الثانية', '')">
+                <div class="card guild-card" onclick="openGuildWithLoading(
+                    'اسم النقابة الثانية', 
+                    'لقب قائد النقابة الثانية', 
+                    'رابط_شعار_النقابة_الثانية.png', 
+                    'رابط_مجموعة_واتساب_الثانية', 
+                    'رابط_تواصل_قائد_الثانية', 
+                    'رابط_قناة_الثانية'
+                )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
                     </div>
@@ -866,7 +929,14 @@
                 </div>
 
                 <!-- بطاقة النقابة الثالثة -->
-                <div class="card guild-card" onclick="openGuildDetails('اسم النقابة الثالثة', 'لقب قائد النقابة الثالثة', '')">
+                <div class="card guild-card" onclick="openGuildWithLoading(
+                    'اسم النقابة الثالثة', 
+                    'لقب قائد النقابة الثالثة', 
+                    'رابط_شعار_النقابة_الثالثة.png', 
+                    'رابط_مجموعة_واتساب_الثالثة', 
+                    'رابط_تواصل_قائد_الثالثة', 
+                    'رابط_قناة_الثالثة'
+                )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
                     </div>
@@ -876,7 +946,7 @@
             </div>
         </section>
 
-        <!-- القسم المنفرد: روابط وتفاصيل النقابة المختارة -->
+        <!-- الشاشة المنفصلة: روابط وتفاصيل النقابة المختارة -->
         <section id="guild-details">
             <button class="back-btn" onclick="switchSection('contracts', document.querySelector('[href=\'#contracts\']'))">
                 <i class="fa-solid fa-arrow-right"></i> العودة لقسم التعاقدات
@@ -892,7 +962,7 @@
 
             <h3 style="color: var(--gold); margin-bottom: 20px; font-size: 24px;">الروابط والمجموعات الخاصة بالنقابة</h3>
 
-            <!-- شبكة البطاقات لعرض روابط النقابة -->
+            <!-- شبكة البطاقات لعرض روابط النقابة الديناميكية -->
             <div class="cards-grid">
                 <div class="card">
                     <div class="card-img-container" style="color: #25d366; border-color: #25d366;">
@@ -900,7 +970,7 @@
                     </div>
                     <h3>المجموعة الرسمية</h3>
                     <p style="margin-bottom: 15px;">الانضمام إلى المجموعة الرئيسية للنقابة المتعاقدة.</p>
-                    <a href="https://chat.whatsapp.com/" target="_blank" class="action-btn whatsapp-btn" style="min-width: auto; padding: 10px;">
+                    <a id="guildGroupBtn" href="#" target="_blank" class="action-btn whatsapp-btn" style="min-width: auto; padding: 10px;">
                         <i class="fa-brands fa-whatsapp"></i> دخول المجموعة
                     </a>
                 </div>
@@ -911,7 +981,7 @@
                     </div>
                     <h3>التواصل مع قائد النقابة</h3>
                     <p style="margin-bottom: 15px;">مراسلة قائد النقابة بشكل مباشر على الواتساب.</p>
-                    <a href="https://wa.me/" target="_blank" class="action-btn leader-btn" style="min-width: auto; padding: 10px;">
+                    <a id="guildLeaderBtn" href="#" target="_blank" class="action-btn leader-btn" style="min-width: auto; padding: 10px;">
                         <i class="fa-solid fa-message"></i> مراسلة القائد
                     </a>
                 </div>
@@ -922,7 +992,7 @@
                     </div>
                     <h3>قناة الإعلانات والفعاليات</h3>
                     <p style="margin-bottom: 15px;">متابعة آخر المستجدات والفعاليات المشتركة للنقابة.</p>
-                    <a href="https://chat.whatsapp.com/" target="_blank" class="action-btn whatsapp-btn" style="min-width: auto; padding: 10px; background: #128c7e; border-color: #128c7e; color: #fff;">
+                    <a id="guildChannelBtn" href="#" target="_blank" class="action-btn whatsapp-btn" style="min-width: auto; padding: 10px; background: #128c7e; border-color: #128c7e; color: #fff;">
                         <i class="fa-solid fa-newspaper"></i> دخول القناة
                     </a>
                 </div>
@@ -1094,6 +1164,14 @@
         </div>
     </div>
 
+    <!-- شاشة التحميل (لمدة 5 ثوانٍ مع شعار النقابة المخصص) -->
+    <div class="loading-overlay" id="loadingModal">
+        <img id="loadingGuildLogo" src="" alt="شعار النقابة" class="loading-guild-logo">
+        <div class="loading-spinner"></div>
+        <h3 style="color: var(--gold); font-size: 24px; margin-bottom: 10px;" id="loadingTitle">جاري تحميل الروابط...</h3>
+        <p style="color: var(--silver); font-size: 16px;">يرجى الانتظار 5 ثوانٍ لفتح شاشة روابط النقابة...</p>
+    </div>
+
     <!-- مودال مساعد البوت المربوط بجميع الأقسام -->
     <div class="modal-overlay" id="botModal">
         <div class="modal-content">
@@ -1118,7 +1196,7 @@
         </div>
     </div>
 
-    <!-- JavaScript للتنقل والتفاعل وتكبير الصور وتمرير بيانات النقابة -->
+    <!-- JavaScript -->
     <script>
         function switchSection(sectionId, element) {
             document.querySelectorAll('main section').forEach(sec => {
@@ -1159,8 +1237,32 @@
             switchSection(sectionId, targetLink);
         }
 
-        // --- الانتقال لقسم روابط تفاصيل النقابة المنفرد عند النقر على البطاقة ---
-        function openGuildDetails(name, leaderTitle, logoUrl) {
+        // --- وظيفة شاشة التحميل عند الضغط لدخول الشاشة المنفصلة (لمدة 5 ثوانٍ مع شعار النقابة المخصص) ---
+        function openGuildWithLoading(name, leaderTitle, logoUrl, groupUrl, leaderUrl, channelUrl) {
+            const modal = document.getElementById('loadingModal');
+            const logoImg = document.getElementById('loadingGuildLogo');
+            const titleEl = document.getElementById('loadingTitle');
+
+            titleEl.innerText = "جاري فتح روابط " + name + "...";
+            
+            if (logoUrl && logoUrl.trim() !== "") {
+                logoImg.src = logoUrl;
+                logoImg.style.display = "block";
+            } else {
+                logoImg.src = "https://i.ibb.co/XfxLGyjg/image.png";
+            }
+
+            modal.style.display = 'flex';
+
+            // الانتظار لمدة 5 ثوانٍ ثم تعبئة البيانات والانتقال للشاشة المنفصلة
+            setTimeout(() => {
+                modal.style.display = 'none';
+                openGuildDetails(name, leaderTitle, logoUrl, groupUrl, leaderUrl, channelUrl);
+            }, 5000);
+        }
+
+        // --- عرض الشاشة المنفصلة الخاصة بالروابط وتحديث أزرارها ---
+        function openGuildDetails(name, leaderTitle, logoUrl, groupUrl, leaderUrl, channelUrl) {
             document.getElementById('guildBannerTitle').innerText = name;
             document.getElementById('guildBannerLeader').innerText = "لقب القائد: " + leaderTitle;
             
@@ -1171,7 +1273,16 @@
                 logoContainer.innerHTML = `<i class="fa-solid fa-building-shield"></i>`;
             }
 
-            const detailsLink = document.querySelector('[href="#guild-details"]');
+            // تحديث روابط الأزرار الخاصة بالنقابة المختارة
+            document.getElementById('guildGroupBtn').href = groupUrl || "https://chat.whatsapp.com/";
+            document.getElementById('guildLeaderBtn').href = leaderUrl || "https://wa.me/";
+            document.getElementById('guildChannelBtn').href = channelUrl || "https://chat.whatsapp.com/";
+
+            // إظهار رابط "روابط النقابة" في القائمة الجانبية والانتقال لها
+            const detailsLi = document.getElementById('guildDetailsNavLi');
+            detailsLi.style.display = 'block';
+            const detailsLink = detailsLi.querySelector('a');
+
             switchSection('guild-details', detailsLink);
         }
 
