@@ -386,7 +386,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
-        /* حاوية الصورة في البطاقات مع خاصية التكبير والنقر */
+        /* حاوية الصورة في البطاقات للحفاظ على الأبعاد ثابتة */
         .card-img-container {
             width: 100px;
             height: 100px;
@@ -411,10 +411,13 @@
             box-shadow: 0 0 15px rgba(223, 177, 91, 0.4);
         }
 
+        /* حماية وتثبيت أبعاد وس الحجم داخل البطاقات */
         .card-img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
 
         /* تخصيص بطاقات النقابات لتكون قابلة للنقر بشكل كامل */
@@ -575,6 +578,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
 
         .back-btn {
@@ -759,7 +763,7 @@
         <ul class="sidebar-menu">
             <li><a href="#home" class="nav-link active" onclick="switchSection('home', this)"><i class="fa-solid fa-house"></i> الشاشة الرئيسية</a></li>
             <li><a href="#contracts" class="nav-link" onclick="switchSection('contracts', this)"><i class="fa-solid fa-handshake"></i> التعاقدات</a></li>
-            <li id="guildDetailsNavLi" style="display: none;"><a href="#guild-details" class="nav-link" onclick="switchSection('guild-details', this)"><i class="fa-solid fa-link"></i> روابط النقابة</a></li>
+            <li><a href="#guild-details" class="nav-link" onclick="switchSection('guild-details', this)"><i class="fa-solid fa-link"></i> روابط النقابة</a></li>
             <li><a href="#elite" class="nav-link" onclick="switchSection('elite', this)"><i class="fa-solid fa-crown"></i> عليا التيك</a></li>
             <li><a href="#newspaper" class="nav-link" onclick="switchSection('newspaper', this)"><i class="fa-solid fa-newspaper"></i> صحيفة التيك (تيك دومين)</a></li>
             <li><a href="#interviews" class="nav-link" onclick="switchSection('interviews', this)"><i class="fa-solid fa-microphone-lines"></i> مقابلات التيك</a></li>
@@ -843,17 +847,17 @@
             <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community. (اضغط على البطاقة للانتقال إلى روابطها)</p>
             
             <div class="cards-grid">
-                <!-- بطاقة النقابة الأولى -->
-               <div class="card guild-card" onclick="openGuildDetails('سيريوس', 'القائد ايانوالويبي', '<a href="https://ibb.co/xKqLrmX0"><img src="https://i.ibb.co/XfxLGyjg/image.png" alt="image" border="0"></a>.jpg')">
-    <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
-        <img src="<a href="https://ibb.co/xKqLrmX0"><img src="https://i.ibb.co/XfxLGyjg/image.png" alt="image" border="0"></a>" alt="شعار سيريوس">
-    </div>
-    <h3>سيريوس</h3>
-    <p>لقب القائد: القائد ايانوالويبي</p>
-</div>
+                <!-- بطاقة نقابة سيريوس (الأولى) -->
+                <div class="card guild-card" onclick="openGuildDetails('سيريوس', 'القائد ايانوالويبي', 'https://i.ibb.co/XfxLGyjg/image.png')">
+                    <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="شعار سيريوس">
+                    </div>
+                    <h3>سيريوس</h3>
+                    <p>لقب القائد: القائد ايانوالويبي</p>
+                </div>
 
                 <!-- بطاقة النقابة الثانية -->
-                <div class="card guild-card" onclick="openGuildDetails('[ اسم النقابة الثانية ]', '[ لقب قائد النقابة الثانية ]', '')">
+                <div class="card guild-card" onclick="openGuildDetails('اسم النقابة الثانية', 'لقب قائد النقابة الثانية', '')">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
                     </div>
@@ -862,7 +866,7 @@
                 </div>
 
                 <!-- بطاقة النقابة الثالثة -->
-                <div class="card guild-card" onclick="openGuildDetails('[ اسم النقابة الثالثة ]', '[ لقب قائد النقابة الثالثة ]', '')">
+                <div class="card guild-card" onclick="openGuildDetails('اسم النقابة الثالثة', 'لقب قائد النقابة الثالثة', '')">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
                     </div>
@@ -872,7 +876,7 @@
             </div>
         </section>
 
-        <!-- القسم الجديد: روابط وتفاصيل النقابة المختارة -->
+        <!-- القسم المنفرد: روابط وتفاصيل النقابة المختارة -->
         <section id="guild-details">
             <button class="back-btn" onclick="switchSection('contracts', document.querySelector('[href=\'#contracts\']'))">
                 <i class="fa-solid fa-arrow-right"></i> العودة لقسم التعاقدات
@@ -1104,6 +1108,7 @@
             <div class="bot-links">
                 <a href="#home" class="bot-link-item" onclick="botNavigate('home')"><span>الشاشة الرئيسية</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#contracts" class="bot-link-item" onclick="botNavigate('contracts')"><span>قسم التعاقدات</span><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="#guild-details" class="bot-link-item" onclick="botNavigate('guild-details')"><span>روابط النقابة</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#elite" class="bot-link-item" onclick="botNavigate('elite')"><span>عليا التيك</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#newspaper" class="bot-link-item" onclick="botNavigate('newspaper')"><span>صحيفة التيك (تيك دومين)</span><i class="fa-solid fa-arrow-left"></i></a>
                 <a href="#interviews" class="bot-link-item" onclick="botNavigate('interviews')"><span>مقابلات التيك</span><i class="fa-solid fa-arrow-left"></i></a>
@@ -1166,11 +1171,7 @@
                 logoContainer.innerHTML = `<i class="fa-solid fa-building-shield"></i>`;
             }
 
-            // إظهار عنصر القائمة الجانبية المخصص وتحديده
-            const detailsLi = document.getElementById('guildDetailsNavLi');
-            detailsLi.style.display = 'block';
-            const detailsLink = detailsLi.querySelector('a');
-
+            const detailsLink = document.querySelector('[href="#guild-details"]');
             switchSection('guild-details', detailsLink);
         }
 
@@ -1180,7 +1181,7 @@
             const modal = document.getElementById('imgModal');
             const modalImg = document.getElementById('modalImageSrc');
 
-            if (imgElement) {
+            if (imgElement && imgElement.src) {
                 modalImg.src = imgElement.src;
                 modal.style.display = 'flex';
             }
