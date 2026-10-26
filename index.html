@@ -386,7 +386,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
-        /* حاوية الصورة في البطاقات (تدعم الأيقونات أو صور الشعار المخصصة) */
+        /* حاوية الصورة في البطاقات */
         .card-img-container {
             width: 100px;
             height: 100px;
@@ -419,7 +419,7 @@
             display: block;
         }
 
-        /* بطاقات النقابات القابلة للنقر للانتقال لصفحة الروابط */
+        /* بطاقات النقابات */
         .guild-card {
             cursor: pointer;
             position: relative;
@@ -445,7 +445,7 @@
             font-size: 15px;
         }
 
-        /* قسم الصحف والمقابلات (قائد ونائب وطاقم) */
+        /* قسم الصحف والمقابلات (قائد ونائب) */
         .leadership-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -461,7 +461,7 @@
             text-align: center;
         }
 
-        /* --- أزرار أسفل الأقسام (الواتساب والقيادة) --- */
+        /* --- أزرار أسفل الأقسام --- */
         .section-action-buttons {
             display: flex;
             gap: 20px;
@@ -545,7 +545,7 @@
             color: var(--silver);
         }
 
-        /* --- قسم تفاصيل روابط النقابة المنفرد (الشاشة المنفصلة) --- */
+        /* --- قسم الشاشة المنفصلة للروابط --- */
         .guild-details-banner {
             background: linear-gradient(135deg, rgba(223, 177, 91, 0.15), var(--card-bg));
             border: 1px solid var(--gold);
@@ -600,7 +600,7 @@
             color: var(--gold);
         }
 
-        /* --- نافذة تكبير الصورة (Image Lightbox Modal) --- */
+        /* --- نافذة تكبير الصور (Lightbox) --- */
         .img-modal-overlay {
             position: fixed;
             top: 0;
@@ -643,7 +643,7 @@
             cursor: pointer;
         }
 
-        /* --- شاشة التحميل (لمدة 5 ثوانٍ عند الضغط لدخول قسم الروابط) --- */
+        /* --- شاشة التحميل --- */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -693,7 +693,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* مودال المساعد الذكي (Bot Modal) */
+        /* مودال المساعد الذكي */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -769,7 +769,7 @@
             padding-right: 22px;
         }
 
-        /* --- التصميم المتجاوب (Responsive) --- */
+        /* --- التصميم المتجاوب --- */
         @media (max-width: 992px) {
             aside {
                 right: -280px;
@@ -858,10 +858,10 @@
                 </div>
             </div>
 
-            <!-- بطاقة تعريف المؤسس -->
+            <!-- بطاقة تعريف المؤسس (ضع رابط صورة المؤسس داخل الـ src) -->
             <div class="founder-card">
                 <div class="founder-avatar" onclick="openImageModal(this)">
-                    <i class="fa-solid fa-user-tie"></i>
+                    <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة المؤسس">
                 </div>
                 <div class="founder-info">
                     <h3>المؤسس والرئيس التنفيذي</h3>
@@ -869,7 +869,7 @@
                 </div>
             </div>
 
-            <!-- الأزرار الأربعة الرئيسية -->
+            <!-- أزرار الروابط الأربعة الرئيسية -->
             <div class="hero-links-grid">
                 <a href="#newspaper" class="hero-link-btn" onclick="switchSection('newspaper', document.querySelector('[href=\'#newspaper\']'))">
                     <i class="fa-solid fa-newspaper"></i>
@@ -890,26 +890,18 @@
             </div>
         </section>
 
-        <!-- 2. قسم التعاقدات (تستطيع وضع رابط شعار النقابة لكل زر ليعرض شعار النقابة بدلاً من الأيقونات العشوائية) -->
+        <!-- 2. قسم التعاقدات -->
         <section id="contracts">
             <h2 class="section-title">قسم التعاقدات</h2>
-            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community. (اضغط على البطاقة للانتقال إلى روابطها بعد شاشة التحميل)</p>
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community.</p>
             
             <div class="cards-grid">
                 <!-- بطاقة نقابة سيريوس (الأولى) -->
                 <div class="card guild-card" onclick="openGuildWithLoading(
-                    'سيريوس',                                         /* اسم النقابة */
-                    'القائد ايانوالويبي',                               /* لقب القائد */
-                    'https://i.ibb.co/XfxLGyjg/image.png',              /* شعار النقابة */
-                    
-                    /* الزر الأول (اسم الزر، الوصف، الرابط، رابط شعار النقابة ليظهر داخله) */
-                    'المجموعة الرسمية', 'الانضمام للمجموعة الرئيسية للنقابة.', 'https://chat.whatsapp.com/رابط_مجموعة_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
-                    
-                    /* الزر الثاني */
-                    'مراسلة القائد', 'التواصل المباشر مع قائد سيريوس.', 'https://wa.me/رقم_قائد_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
-                    
-                    /* الزر الثالث */
-                    'بنك سيريوس', 'الدخول إلى النظام البنكي والمعاملات.', 'https://chat.whatsapp.com/رابط_بنك_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png'
+                    'سيريوس', 'القائد ايانوالويبي', 'https://i.ibb.co/XfxLGyjg/image.png', 
+                    'المجموعة الرسمية', 'الانضمام للمجموعة الرئيسية.', 'https://chat.whatsapp.com/رابط_مجموعة_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
+                    'مراسلة القائد', 'التواصل مع قائد سيريوس.', 'https://wa.me/رقم_قائد_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
+                    'بنك سيريوس', 'النظام البنكي والمعاملات.', 'https://chat.whatsapp.com/رابط_بنك_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="شعار سيريوس">
@@ -920,70 +912,17 @@
 
                 <!-- بطاقة النقابة الثانية -->
                 <div class="card guild-card" onclick="openGuildWithLoading(
-                    'اسم النقابة الثانية',                               /* اسم النقابة */
-                    'لقب قائد النقابة الثانية',                         /* لقب القائد */
-                    'رابط_شعار_النقابة_الثانية.png',                    /* شعار النقابة */
-                    
-                    /* الزر الأول */
-                    'قروب النقابة', 'الانضمام لقروب النقابة الثانية.', 'رابط_قروب_الثانية', 'رابط_شعار_النقابة_الثانية.png',
-                    
-                    /* الزر الثاني */
-                    'تواصل القايد', 'مراسلة قائد النقابة الثانية.', 'رابط_تواصل_القائد_الثانية', 'رابط_شعار_النقابة_الثانية.png',
-                    
-                    /* الزر الثالث */
-                    'معرض النقابة', 'تصفح معرض الصور والأعمال.', 'رابط_معرض_النقابة_الثانية', 'رابط_شعار_النقابة_الثانية.png'
+                    'اسم النقابة الثانية', 'لقب قائد النقابة الثانية', 'رابط_شعار_الثانية.png', 
+                    'قروب النقابة', 'الانضمام لقروب النقابة الثانية.', 'رابط_قروب_الثانية', 'رابط_شعار_الثانية.png',
+                    'تواصل القايد', 'مراسلة قائد النقابة الثانية.', 'رابط_تواصل_الثانية', 'رابط_شعار_الثانية.png',
+                    'معرض النقابة', 'تصفح معرض الصور والأعمال.', 'رابط_معرض_الثانية', 'رابط_شعار_الثانية.png'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
-                        <i class="fa-solid fa-building-shield"></i>
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="شعار النقابة الثانية">
                     </div>
                     <h3>[ اسم النقابة الثانية ]</h3>
                     <p>لقب القائد: [ لقب قائد النقابة الثانية ]</p>
                 </div>
-
-                <!-- بطاقة النقابة الثالثة -->
-                <div class="card guild-card" onclick="openGuildWithLoading(
-                    'اسم النقابة الثالثة',                               /* اسم النقابة */
-                    'لقب قائد النقابة الثالثة',                         /* لقب القائد */
-                    'رابط_شعار_النقابة_الثالثة.png',                    /* شعار النقابة */
-                    
-                    /* الزر الأول */
-                    'مجتمع النقابة', 'الانضمام لمجتمع النقابة الثالثة.', 'رابط_مجتمع_الثالثة', 'رابط_شعار_النقابة_الثالثة.png',
-                    
-                    /* الزر الثاني */
-                    'دعم القائد', 'مراسلة الدعم أو قائد النقابة.', 'رابط_دعم_الثالثة', 'رابط_شعار_النقابة_الثالثة.png',
-                    
-                    /* الزر الثالث */
-                    'متجر النقابة', 'شراء الخدمات والعضويات.', 'رابط_متجر_الثالثة', 'رابط_شعار_النقابة_الثالثة.png'
-                )">
-                    <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
-                        <i class="fa-solid fa-building-shield"></i>
-                    </div>
-                    <h3>[ اسم النقابة الثالثة ]</h3>
-                    <p>لقب القائد: [ لقب قائد النقابة الثالثة ]</p>
-             </div>
-
-                 <!-- بطاقة نقابة سيريوس (الأولى) -->
-                <div class="card guild-card" onclick="openGuildWithLoading(
-                    'سيريوس',                                         /* اسم النقابة */
-                    'القائد ايانوالويبي',                               /* لقب القائد */
-                    'https://i.ibb.co/XfxLGyjg/image.png',              /* شعار النقابة */
-                    
-                    /* الزر الأول (اسم الزر، الوصف، الرابط، رابط شعار النقابة ليظهر داخله) */
-                    'المجموعة الرسمية', 'الانضمام للمجموعة الرئيسية للنقابة.', 'https://chat.whatsapp.com/رابط_مجموعة_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
-                    
-                    /* الزر الثاني */
-                    'مراسلة القائد', 'التواصل المباشر مع قائد سيريوس.', 'https://wa.me/رقم_قائد_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
-                    
-                    /* الزر الثالث */
-                    'بنك سيريوس', 'الدخول إلى النظام البنكي والمعاملات.', 'https://chat.whatsapp.com/رابط_بنك_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png'
-                )">
-                    <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
-                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="شعار سيريوس">
-                    </div>
-                    <h3>سيريوس</h3>
-                    <p>لقب القائد: القائد ايانوالويبي</p>
-                </div>
-
             </div>
         </section>
 
@@ -1003,10 +942,7 @@
 
             <h3 style="color: var(--gold); margin-bottom: 20px; font-size: 24px;">الروابط والمجموعات الخاصة بالنقابة</h3>
 
-            <!-- شبكة البطاقات الثلاثة (الآن تعرض شعار النقابة داخل كل زر بدلاً من الأيقونات العشوائية) -->
             <div class="cards-grid">
-                
-                <!-- الزر / البطاقة الأولى -->
                 <div class="card">
                     <div class="card-img-container" id="btn1ImgContainer" onclick="openImageModal(this)">
                         <i id="btn1FallbackIcon" class="fa-solid fa-star"></i>
@@ -1018,7 +954,6 @@
                     </a>
                 </div>
 
-                <!-- الزر / البطاقة الثانية -->
                 <div class="card">
                     <div class="card-img-container" id="btn2ImgContainer" onclick="openImageModal(this)">
                         <i id="btn2FallbackIcon" class="fa-solid fa-star"></i>
@@ -1030,7 +965,6 @@
                     </a>
                 </div>
 
-                <!-- الزر / البطاقة الثالثة -->
                 <div class="card">
                     <div class="card-img-container" id="btn3ImgContainer" onclick="openImageModal(this)">
                         <i id="btn3FallbackIcon" class="fa-solid fa-star"></i>
@@ -1041,44 +975,37 @@
                         <i class="fa-solid fa-link"></i> <span id="btn3Text">دخول</span>
                     </a>
                 </div>
-
             </div>
         </section>
 
-        <!-- 3. قسم عليا التيك -->
+        <!-- 3. قسم عليا التيك (ضع روابط صور النخبة داخل الوسم src) -->
         <section id="elite">
             <h2 class="section-title">عليا التيك</h2>
             <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">نخبة المجتمع وأصحاب الأثر والقيادة العليا في TEC Community.</p>
             
             <div class="cards-grid">
+                <!-- العضو الأول -->
                 <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-user"></i></div>
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة عضو عليا التيك">
+                    </div>
                     <h3>[ اسم العضو الأول ]</h3>
                     <p>تعريف موجز أو الدور القيادي هنا...</p>
                 </div>
+                <!-- العضو الثاني -->
                 <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-user"></i></div>
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة عضو عليا التيك">
+                    </div>
                     <h3>[ اسم العضو الثاني ]</h3>
                     <p>تعريف موجز أو الدور القيادي هنا...</p>
                 </div>
+                <!-- العضو الثالث -->
                 <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-user"></i></div>
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة عضو عليا التيك">
+                    </div>
                     <h3>[ اسم العضو الثالث ]</h3>
-                    <p>تعريف موجز أو الدور القيادي هنا...</p>
-                </div>
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-user"></i></div>
-                    <h3>[ اسم العضو الرابع ]</h3>
-                    <p>تعريف موجز أو الدور القيادي هنا...</p>
-                </div>
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-user"></i></div>
-                    <h3>[ اسم العضو الخامس ]</h3>
-                    <p>تعريف موجز أو الدور القيادي هنا...</p>
-                </div>
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-user"></i></div>
-                    <h3>[ اسم العضو السادس ]</h3>
                     <p>تعريف موجز أو الدور القيادي هنا...</p>
                 </div>
             </div>
@@ -1087,16 +1014,22 @@
         <!-- 4. صحيفة التيك (تيك دومين) -->
         <section id="newspaper">
             <h2 class="section-title">صحيفة التيك (تيك دومين)</h2>
-            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النافذة الإخبارية والمقالات الرسمية للمجتمع، تغطي أحدث الأخبار والتقارير التقنية.</p>
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النافذة الإخبارية والمقالات الرسمية للمجتمع.</p>
             
             <div class="leadership-grid">
+                <!-- قائد الصحيفة -->
                 <div class="leader-card">
-                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)"><i class="fa-solid fa-crown"></i></div>
+                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة قائد الصحيفة">
+                    </div>
                     <h3>قائد الصحيفة</h3>
                     <p>[ اسم قائد الصحيفة ]</p>
                 </div>
+                <!-- نائب الصحيفة -->
                 <div class="leader-card">
-                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة نائب الصحيفة">
+                    </div>
                     <h3>نائب الصحيفة</h3>
                     <p>[ اسم نائب الصحيفة ]</p>
                 </div>
@@ -1104,24 +1037,24 @@
 
             <h3 style="color: var(--gold); margin-bottom: 15px; font-size: 22px;">طاقم الصحفيين</h3>
             <div class="cards-grid">
+                <!-- الصحفي الأول -->
                 <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-pen-nib"></i></div>
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة الصحفي">
+                    </div>
                     <h3>[ اسم الصحفي ]</h3>
                     <p>محقق صحفي / محرر مقالات</p>
                 </div>
+                <!-- الصحفي الثاني -->
                 <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-pen-nib"></i></div>
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة الصحفي">
+                    </div>
                     <h3>[ اسم الصحفي ]</h3>
                     <p>صحفي تقني</p>
                 </div>
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-pen-nib"></i></div>
-                    <h3>[ اسم الصحفي ]</h3>
-                    <p>مراسل صحفي</p>
-                </div>
             </div>
 
-            <!-- أزرار التواصل بأسفل قسم الصحيفة -->
             <div class="section-action-buttons">
                 <a href="https://chat.whatsapp.com/" target="_blank" class="action-btn whatsapp-btn">
                     <i class="fa-brands fa-whatsapp"></i> دخول مجموعة قسم الصحيفة
@@ -1135,16 +1068,22 @@
         <!-- 5. مقابلات التيك -->
         <section id="interviews">
             <h2 class="section-title">مقابلات التيك</h2>
-            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">لقاءات حصرية مع أبرز الشخصيات والمبدعين داخل وخارج المجتمع.</p>
+            <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">لقاءات حصرية مع أبرز الشخصيات والمبدعين.</p>
             
             <div class="leadership-grid">
+                <!-- قائد المقابلات -->
                 <div class="leader-card">
-                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)"><i class="fa-solid fa-microphone"></i></div>
+                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة قائد المقابلات">
+                    </div>
                     <h3>قائد المقابلات</h3>
                     <p>[ اسم قائد المقابلات ]</p>
                 </div>
+                <!-- نائب المقابلات -->
                 <div class="leader-card">
-                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="card-img-container" style="margin: 0 auto 15px auto;" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة نائب المقابلات">
+                    </div>
                     <h3>نائب المقابلات</h3>
                     <p>[ اسم نائب المقابلات ]</p>
                 </div>
@@ -1152,24 +1091,24 @@
 
             <h3 style="color: var(--gold); margin-bottom: 15px; font-size: 22px;">طاقم مقدمي المقابلات</h3>
             <div class="cards-grid">
+                <!-- المحاور الأول -->
                 <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-video"></i></div>
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة المحاور">
+                    </div>
                     <h3>[ اسم المحاور ]</h3>
                     <p>مقدم لقاءات وحوارات</p>
                 </div>
+                <!-- المحاور الثاني -->
                 <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-video"></i></div>
+                    <div class="card-img-container" onclick="openImageModal(this)">
+                        <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="صورة المحاور">
+                    </div>
                     <h3>[ اسم المحاور ]</h3>
                     <p>معد أسئلة ومقاطع</p>
                 </div>
-                <div class="card">
-                    <div class="card-img-container" onclick="openImageModal(this)"><i class="fa-solid fa-video"></i></div>
-                    <h3>[ اسم المحاور ]</h3>
-                    <p>مذيع ومحاور ميداني</p>
-                </div>
             </div>
 
-            <!-- أزرار التواصل بأسفل قسم المقابلات -->
             <div class="section-action-buttons">
                 <a href="https://chat.whatsapp.com/" target="_blank" class="action-btn whatsapp-btn">
                     <i class="fa-brands fa-whatsapp"></i> دخول مجموعة قسم المقابلات
@@ -1186,7 +1125,7 @@
             <div class="maintenance-box">
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 <h3>مقفل للصيانة</h3>
-                <p>نعمل حالياً على تطوير وتحديث البنية التحتية للسيرفرات لتقديم أفضل أداء ممكن. ترقبوا الإطلاق القريب!</p>
+                <p>نعمل حالياً على تطوير وتحديث البنية التحتية للسيرفرات لتقديم أفضل أداء ممكن.</p>
             </div>
         </section>
 
@@ -1196,13 +1135,13 @@
             <div class="maintenance-box">
                 <i class="fa-solid fa-lock"></i>
                 <h3>مقفل للصيانة</h3>
-                <p>هذا القسم سري وقيد الإنشاء والتطوير حالياً. سيتم الكشف عن تفاصيله قريباً.</p>
+                <p>هذا القسم سري وقيد الإنشاء والتطوير حالياً.</p>
             </div>
         </section>
 
     </main>
 
-    <!-- نافذة منبثقة لتكبير الصور (Image Lightbox Modal) -->
+    <!-- نافذة تكبير الصور (Lightbox) -->
     <div class="img-modal-overlay" id="imgModal" onclick="closeImageModal()">
         <div class="img-modal-content" onclick="event.stopPropagation()">
             <button class="img-modal-close" onclick="closeImageModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1210,7 +1149,7 @@
         </div>
     </div>
 
-    <!-- شاشة التحميل (لمدة 5 ثوانٍ مع شعار النقابة المخصص) -->
+    <!-- شاشة التحميل -->
     <div class="loading-overlay" id="loadingModal">
         <img id="loadingGuildLogo" src="" alt="شعار النقابة" class="loading-guild-logo">
         <div class="loading-spinner"></div>
@@ -1218,7 +1157,7 @@
         <p style="color: var(--silver); font-size: 16px;">يرجى الانتظار 5 ثوانٍ لفتح شاشة روابط النقابة...</p>
     </div>
 
-    <!-- مودال مساعد البوت المربوط بجميع الأقسام -->
+    <!-- مودال المساعد الذكي -->
     <div class="modal-overlay" id="botModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeBotModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1248,20 +1187,16 @@
             document.querySelectorAll('main section').forEach(sec => {
                 sec.classList.remove('active-section');
             });
-
             document.getElementById(sectionId).classList.add('active-section');
-
             document.querySelectorAll('.sidebar-menu a').forEach(link => {
                 link.classList.remove('active');
             });
             if(element) {
                 element.classList.add('active');
             }
-
             if(window.innerWidth <= 992) {
                 document.getElementById('sidebar').classList.remove('show');
             }
-
             window.scrollTo(0, 0);
         }
 
@@ -1283,7 +1218,6 @@
             switchSection(sectionId, targetLink);
         }
 
-        /* --- شاشة التحميل --- */
         function openGuildWithLoading(name, leaderTitle, logoUrl, 
             b1Name, b1Desc, b1Url, b1Img, 
             b2Name, b2Desc, b2Url, b2Img, 
@@ -1313,7 +1247,6 @@
             }, 5000);
         }
 
-        /* --- تحديث الأزرار وعرض شعار النقابة المخصص داخل كل زر --- */
         function openGuildDetails(name, leaderTitle, logoUrl, 
             b1Name, b1Desc, b1Url, b1Img, 
             b2Name, b2Desc, b2Url, b2Img, 
@@ -1329,7 +1262,7 @@
                 logoContainer.innerHTML = `<i class="fa-solid fa-building-shield"></i>`;
             }
 
-            // --- تحديث الزر الأول ---
+            // الزر الأول
             document.getElementById('btn1Title').innerText = b1Name;
             document.getElementById('btn1Desc').innerText = b1Desc;
             document.getElementById('btn1Text').innerText = b1Name;
@@ -1342,7 +1275,7 @@
                 c1.innerHTML = `<i class="fa-solid fa-star"></i>`;
             }
 
-            // --- تحديث الزر الثاني ---
+            // الزر الثاني
             document.getElementById('btn2Title').innerText = b2Name;
             document.getElementById('btn2Desc').innerText = b2Desc;
             document.getElementById('btn2Text').innerText = b2Name;
@@ -1355,7 +1288,7 @@
                 c2.innerHTML = `<i class="fa-solid fa-star"></i>`;
             }
 
-            // --- تحديث الزر الثالث ---
+            // الزر الثالث
             document.getElementById('btn3Title').innerText = b3Name;
             document.getElementById('btn3Desc').innerText = b3Desc;
             document.getElementById('btn3Text').innerText = b3Name;
@@ -1373,7 +1306,6 @@
             switchSection('guild-details', detailsLi.querySelector('a'));
         }
 
-        /* --- وظائف تكبير الصور (Lightbox) --- */
         function openImageModal(container) {
             const imgElement = container.querySelector('img');
             const modal = document.getElementById('imgModal');
