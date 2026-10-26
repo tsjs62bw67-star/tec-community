@@ -386,7 +386,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
-        /* حاوية الصورة في البطاقات */
+        /* حاوية الصورة في البطاقات (تدعم الأيقونات أو صور الشعار المخصصة) */
         .card-img-container {
             width: 100px;
             height: 100px;
@@ -890,7 +890,7 @@
             </div>
         </section>
 
-        <!-- 2. قسم التعاقدات (تستطيع تخصيص كل زر بالكامل لكل نقابة هنا) -->
+        <!-- 2. قسم التعاقدات (تستطيع وضع رابط شعار النقابة لكل زر ليعرض شعار النقابة بدلاً من الأيقونات العشوائية) -->
         <section id="contracts">
             <h2 class="section-title">قسم التعاقدات</h2>
             <p style="color: var(--silver); font-size: 18px; margin-bottom: 25px;">النقابات والشراكات المتعاقد معها رسمياً داخل TEC Community. (اضغط على البطاقة للانتقال إلى روابطها بعد شاشة التحميل)</p>
@@ -902,14 +902,14 @@
                     'القائد ايانوالويبي',                               /* لقب القائد */
                     'https://i.ibb.co/XfxLGyjg/image.png',              /* شعار النقابة */
                     
-                    /* الزر الأول */
-                    'المجموعة الرسمية', ' للمجموعة الرئيسية للنقابة.', 'https://chat.whatsapp.com/رابط_مجموعة_سيريوس', 'fa-solid fa-users',
+                    /* الزر الأول (اسم الزر، الوصف، الرابط، رابط شعار النقابة ليظهر داخله) */
+                    'المجموعة الرسمية', 'الانضمام للمجموعة الرئيسية للنقابة.', 'https://chat.whatsapp.com/رابط_مجموعة_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
                     
                     /* الزر الثاني */
-                    'مراسلة القائد', 'التواصل مع قائد سيريوس.', 'https://wa.me/رقم_قائد_سيريوس', 'fa-solid fa-user-shield',
+                    'مراسلة القائد', 'التواصل المباشر مع قائد سيريوس.', 'https://wa.me/رقم_قائد_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png',
                     
                     /* الزر الثالث */
-                    'بنك سيريوس', 'الدخول إلى النظام البنكي والمعاملات.', 'https://chat.whatsapp.com/رابط_بنك_سيريوس', 'fa-solid fa-vault'
+                    'بنك سيريوس', 'الدخول إلى النظام البنكي والمعاملات.', 'https://chat.whatsapp.com/رابط_بنك_سيريوس', 'https://i.ibb.co/XfxLGyjg/image.png'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <img src="https://i.ibb.co/XfxLGyjg/image.png" alt="شعار سيريوس">
@@ -918,20 +918,20 @@
                     <p>لقب القائد: القائد ايانوالويبي</p>
                 </div>
 
-                <!-- بطاقة النقابة الثانية (أزرار مخصصة بالكامل بشكل مختلف) -->
+                <!-- بطاقة النقابة الثانية -->
                 <div class="card guild-card" onclick="openGuildWithLoading(
                     'اسم النقابة الثانية',                               /* اسم النقابة */
                     'لقب قائد النقابة الثانية',                         /* لقب القائد */
                     'رابط_شعار_النقابة_الثانية.png',                    /* شعار النقابة */
                     
                     /* الزر الأول */
-                    'قروب النقابة', 'الانضمام لقروب  الثانية.', 'رابط_قروب_الثانية', 'fa-brands fa-whatsapp',
+                    'قروب النقابة', 'الانضمام لقروب النقابة الثانية.', 'رابط_قروب_الثانية', 'رابط_شعار_النقابة_الثانية.png',
                     
                     /* الزر الثاني */
-                    'تواصل القايد', 'مراسلة قائد  الثانية.', 'رابط_تواصل_القائد_الثانية', 'fa-solid fa-message',
+                    'تواصل القايد', 'مراسلة قائد النقابة الثانية.', 'رابط_تواصل_القائد_الثانية', 'رابط_شعار_النقابة_الثانية.png',
                     
                     /* الزر الثالث */
-                    'معرض ', 'تصفح  الصور والأعمال.', 'رابط_معرض_النقابة_الثانية', 'fa-solid fa-store'
+                    'معرض النقابة', 'تصفح معرض الصور والأعمال.', 'رابط_معرض_النقابة_الثانية', 'رابط_شعار_النقابة_الثانية.png'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
@@ -940,20 +940,20 @@
                     <p>لقب القائد: [ لقب قائد النقابة الثانية ]</p>
                 </div>
 
-                <!-- بطاقة النقابة الثالثة (أزرار مخصصة بالكامل) -->
+                <!-- بطاقة النقابة الثالثة -->
                 <div class="card guild-card" onclick="openGuildWithLoading(
                     'اسم النقابة الثالثة',                               /* اسم النقابة */
                     'لقب قائد النقابة الثالثة',                         /* لقب القائد */
                     'رابط_شعار_النقابة_الثالثة.png',                    /* شعار النقابة */
                     
                     /* الزر الأول */
-                    'مجتمع النقابة', 'الانضمام لمجتمع النقابة الثالثة.', 'رابط_مجتمع_الثالثة', 'fa-solid fa-globe',
+                    'مجتمع النقابة', 'الانضمام لمجتمع النقابة الثالثة.', 'رابط_مجتمع_الثالثة', 'رابط_شعار_النقابة_الثالثة.png',
                     
                     /* الزر الثاني */
-                    'دعم القائد', 'مراسلة الدعم أو قائد النقابة.', 'رابط_دعم_الثالثة', 'fa-solid fa-headset',
+                    'دعم القائد', 'مراسلة الدعم أو قائد النقابة.', 'رابط_دعم_الثالثة', 'رابط_شعار_النقابة_الثالثة.png',
                     
                     /* الزر الثالث */
-                    'متجر النقابة', 'شراء الخدمات والعضويات.', 'رابط_متجر_الثالثة', 'fa-solid fa-cart-shopping'
+                    'متجر النقابة', 'شراء الخدمات والعضويات.', 'رابط_متجر_الثالثة', 'رابط_شعار_النقابة_الثالثة.png'
                 )">
                     <div class="card-img-container" onclick="event.stopPropagation(); openImageModal(this)">
                         <i class="fa-solid fa-building-shield"></i>
@@ -980,42 +980,42 @@
 
             <h3 style="color: var(--gold); margin-bottom: 20px; font-size: 24px;">الروابط والمجموعات الخاصة بالنقابة</h3>
 
-            <!-- شبكة البطاقات الثلاثة (التحكم الكامل بأسمائها وأيقوناتها ووصفها وروابطها لكل نقابة) -->
+            <!-- شبكة البطاقات الثلاثة (الآن تعرض شعار النقابة داخل كل زر بدلاً من الأيقونات العشوائية) -->
             <div class="cards-grid">
                 
                 <!-- الزر / البطاقة الأولى -->
                 <div class="card">
-                    <div class="card-img-container" style="color: var(--gold); border-color: var(--gold);">
-                        <i id="btn1Icon" class="fa-solid fa-star"></i>
+                    <div class="card-img-container" id="btn1ImgContainer" onclick="openImageModal(this)">
+                        <i id="btn1FallbackIcon" class="fa-solid fa-star"></i>
                     </div>
                     <h3 id="btn1Title">الزر الأول</h3>
                     <p style="margin-bottom: 15px;" id="btn1Desc">وصف الزر الأول هنا...</p>
                     <a id="btn1Link" href="#" target="_blank" class="action-btn leader-btn" style="min-width: auto; padding: 10px;">
-                        <i id="btn1LinkIcon" class="fa-solid fa-link"></i> <span id="btn1Text">دخول</span>
+                        <i class="fa-solid fa-link"></i> <span id="btn1Text">دخول</span>
                     </a>
                 </div>
 
                 <!-- الزر / البطاقة الثانية -->
                 <div class="card">
-                    <div class="card-img-container" style="color: var(--gold); border-color: var(--gold);">
-                        <i id="btn2Icon" class="fa-solid fa-star"></i>
+                    <div class="card-img-container" id="btn2ImgContainer" onclick="openImageModal(this)">
+                        <i id="btn2FallbackIcon" class="fa-solid fa-star"></i>
                     </div>
                     <h3 id="btn2Title">الزر الثاني</h3>
                     <p style="margin-bottom: 15px;" id="btn2Desc">وصف الزر الثاني هنا...</p>
                     <a id="btn2Link" href="#" target="_blank" class="action-btn leader-btn" style="min-width: auto; padding: 10px;">
-                        <i id="btn2LinkIcon" class="fa-solid fa-link"></i> <span id="btn2Text">دخول</span>
+                        <i class="fa-solid fa-link"></i> <span id="btn2Text">دخول</span>
                     </a>
                 </div>
 
                 <!-- الزر / البطاقة الثالثة -->
                 <div class="card">
-                    <div class="card-img-container" style="color: var(--gold); border-color: var(--gold);">
-                        <i id="btn3Icon" class="fa-solid fa-star"></i>
+                    <div class="card-img-container" id="btn3ImgContainer" onclick="openImageModal(this)">
+                        <i id="btn3FallbackIcon" class="fa-solid fa-star"></i>
                     </div>
                     <h3 id="btn3Title">الزر الثالث</h3>
                     <p style="margin-bottom: 15px;" id="btn3Desc">وصف الزر الثالث هنا...</p>
                     <a id="btn3Link" href="#" target="_blank" class="action-btn leader-btn" style="min-width: auto; padding: 10px; background: rgba(223, 177, 91, 0.15);">
-                        <i id="btn3LinkIcon" class="fa-solid fa-link"></i> <span id="btn3Text">دخول</span>
+                        <i class="fa-solid fa-link"></i> <span id="btn3Text">دخول</span>
                     </a>
                 </div>
 
@@ -1260,23 +1260,23 @@
             switchSection(sectionId, targetLink);
         }
 
-        /* --- شاشة التحميل (تمرير كامل لبيانات الـ 3 أزرار) --- */
+        /* --- شاشة التحميل --- */
         function openGuildWithLoading(name, leaderTitle, logoUrl, 
-            b1Name, b1Desc, b1Url, b1Icon, 
-            b2Name, b2Desc, b2Url, b2Icon, 
-            b3Name, b3Desc, b3Url, b3Icon) {
+            b1Name, b1Desc, b1Url, b1Img, 
+            b2Name, b2Desc, b2Url, b2Img, 
+            b3Name, b3Desc, b3Url, b3Img) {
             
             const modal = document.getElementById('loadingModal');
-            const logoImg = document.getElementById('loadingGuildLogo');
+            const logoImgEl = document.getElementById('loadingGuildLogo');
             const titleEl = document.getElementById('loadingTitle');
 
             titleEl.innerText = "جاري فتح روابط " + name + "...";
             
             if (logoUrl && logoUrl.trim() !== "") {
-                logoImg.src = logoUrl;
-                logoImg.style.display = "block";
+                logoImgEl.src = logoUrl;
+                logoImgEl.style.display = "block";
             } else {
-                logoImg.src = "https://i.ibb.co/XfxLGyjg/image.png";
+                logoImgEl.src = "https://i.ibb.co/XfxLGyjg/image.png";
             }
 
             modal.style.display = 'flex';
@@ -1284,17 +1284,17 @@
             setTimeout(() => {
                 modal.style.display = 'none';
                 openGuildDetails(name, leaderTitle, logoUrl, 
-                    b1Name, b1Desc, b1Url, b1Icon, 
-                    b2Name, b2Desc, b2Url, b2Icon, 
-                    b3Name, b3Desc, b3Url, b3Icon);
+                    b1Name, b1Desc, b1Url, b1Img, 
+                    b2Name, b2Desc, b2Url, b2Img, 
+                    b3Name, b3Desc, b3Url, b3Img);
             }, 5000);
         }
 
-        /* --- تحديث جميع أزرار الشاشة المنفصلة ديناميكياً بكل تفاصيلها لكل نقابة --- */
+        /* --- تحديث الأزرار وعرض شعار النقابة المخصص داخل كل زر --- */
         function openGuildDetails(name, leaderTitle, logoUrl, 
-            b1Name, b1Desc, b1Url, b1Icon, 
-            b2Name, b2Desc, b2Url, b2Icon, 
-            b3Name, b3Desc, b3Url, b3Icon) {
+            b1Name, b1Desc, b1Url, b1Img, 
+            b2Name, b2Desc, b2Url, b2Img, 
+            b3Name, b3Desc, b3Url, b3Img) {
             
             document.getElementById('guildBannerTitle').innerText = name;
             document.getElementById('guildBannerLeader').innerText = "لقب القائد: " + leaderTitle;
@@ -1306,29 +1306,44 @@
                 logoContainer.innerHTML = `<i class="fa-solid fa-building-shield"></i>`;
             }
 
-            // --- تخصيص الزر الأول بالكامل ---
+            // --- تحديث الزر الأول ---
             document.getElementById('btn1Title').innerText = b1Name;
             document.getElementById('btn1Desc').innerText = b1Desc;
             document.getElementById('btn1Text').innerText = b1Name;
             document.getElementById('btn1Link').href = b1Url || "#";
-            document.getElementById('btn1Icon').className = b1Icon || "fa-solid fa-star";
-            document.getElementById('btn1LinkIcon').className = b1Icon || "fa-solid fa-link";
+            
+            const c1 = document.getElementById('btn1ImgContainer');
+            if (b1Img && b1Img.trim() !== "") {
+                c1.innerHTML = `<img src="${b1Img}" alt="${b1Name}">`;
+            } else {
+                c1.innerHTML = `<i class="fa-solid fa-star"></i>`;
+            }
 
-            // --- تخصيص الزر الثاني بالكامل ---
+            // --- تحديث الزر الثاني ---
             document.getElementById('btn2Title').innerText = b2Name;
             document.getElementById('btn2Desc').innerText = b2Desc;
             document.getElementById('btn2Text').innerText = b2Name;
             document.getElementById('btn2Link').href = b2Url || "#";
-            document.getElementById('btn2Icon').className = b2Icon || "fa-solid fa-star";
-            document.getElementById('btn2LinkIcon').className = b2Icon || "fa-solid fa-link";
+            
+            const c2 = document.getElementById('btn2ImgContainer');
+            if (b2Img && b2Img.trim() !== "") {
+                c2.innerHTML = `<img src="${b2Img}" alt="${b2Name}">`;
+            } else {
+                c2.innerHTML = `<i class="fa-solid fa-star"></i>`;
+            }
 
-            // --- تخصيص الزر الثالث بالكامل ---
+            // --- تحديث الزر الثالث ---
             document.getElementById('btn3Title').innerText = b3Name;
             document.getElementById('btn3Desc').innerText = b3Desc;
             document.getElementById('btn3Text').innerText = b3Name;
             document.getElementById('btn3Link').href = b3Url || "#";
-            document.getElementById('btn3Icon').className = b3Icon || "fa-solid fa-star";
-            document.getElementById('btn3LinkIcon').className = b3Icon || "fa-solid fa-link";
+            
+            const c3 = document.getElementById('btn3ImgContainer');
+            if (b3Img && b3Img.trim() !== "") {
+                c3.innerHTML = `<img src="${b3Img}" alt="${b3Name}">`;
+            } else {
+                c3.innerHTML = `<i class="fa-solid fa-star"></i>`;
+            }
 
             const detailsLi = document.getElementById('guildDetailsNavLi');
             detailsLi.style.display = 'block';
